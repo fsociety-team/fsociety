@@ -29,3 +29,7 @@ def set_readline(items):
         import rlcompleter
         readline.set_completer(CommandCompleter(items).complete)
         readline.parse_and_bind("tab: complete")
+
+
+def format_tools(tools):
+    return "".join([f"\n\t{str(tool)}" for tool in tools])
