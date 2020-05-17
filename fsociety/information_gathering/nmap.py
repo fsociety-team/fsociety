@@ -1,3 +1,6 @@
+import os
+from shutil import which
+
 from fsociety.core.repo import GitHubRepo
 
 install = {
@@ -10,10 +13,11 @@ class nmapRepo(GitHubRepo):
         super().__init__(path=path, install=install)
 
     def install(self):
-        path = self.clone
+        if not which("nmap"):
+            super().install()
 
     def run(self):
-        print("Running nmap")
+        os.system("nmap")
 
 
 nmap = nmapRepo()
