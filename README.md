@@ -9,18 +9,19 @@ A Penetration Testing Framework
 ## Install
 
 ```bash
-pip install -e .
+pip install fsociety
 ```
 
 ## Usage
 
 ```bash
-python fsociety
+fsociety
 ```
 
 ## Develop
 
 ```bash
+git clone https://github.com/fsociety-team/fsociety.git
 pip install -e ".[dev]"
 ```
 
