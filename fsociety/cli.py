@@ -7,7 +7,7 @@ import colorama
 from colorama import Fore, Back, Style
 
 # Core
-from fsociety.core.menu import set_readline, format_tools
+from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt
 from fsociety.core.config import get_config, write_config
 
 # Modules
@@ -43,17 +43,13 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def command_name(module):
-    return module.__name__.split(".")[-1]
-
-
 def menuitems():
     items_str = str()
     for value in MENU_ITEMS:
-        name = command_name(value)
+        name = module_name(value)
         tools = format_tools(value.__tools__)
-        items_str += f"{Back.WHITE}{Fore.BLACK}{name}:{Style.RESET_ALL} {tools}\n\n"
-    items_str += f"{Back.WHITE}{Fore.BLACK}exit{Style.RESET_ALL}\n"
+        items_str += f"{format_menu_item(name)} {tools}\n\n"
+    items_str += f"{format_menu_item('exit')}"
     return items_str
 
 
@@ -68,7 +64,7 @@ def agreement():
 
 
 for item in MENU_ITEMS:
-    items[command_name(item)] = item
+    items[module_name(item)] = item
 
 commands = list(items.keys()) + ["exit"]
 
@@ -77,8 +73,7 @@ def mainloop():
     agreement()
     print(MENU_TITLE)
     print(menuitems())
-    selected_command = input(
-        f"{Fore.RED}fsociety ~# {Fore.WHITE}").strip()
+    selected_command = input(prompt()).strip()
     if not selected_command or (not selected_command in commands):
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return

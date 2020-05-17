@@ -1,14 +1,12 @@
 # Core
-from fsociety.core.menu import set_readline, format_tools
+from fsociety.core.menu import tools_cli
 
 from .nmap import nmap
 
-__tools__ = [nmap]
+__tools__ = {
+    "nmap": nmap
+}
 
 
 def cli():
-    print("Information Gathering!")
-    print(format_tools(__tools__))
-    set_readline(__tools__)
-    selected_tool = input("Select a tool: ")
-    print(selected_tool)
+    tools_cli(__name__, __tools__)
