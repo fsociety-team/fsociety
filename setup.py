@@ -16,7 +16,7 @@ URL = 'https://github.com/fsociety-team/fsociety'
 EMAIL = 'contact@fsocietyproject.ml'
 AUTHOR = 'fsociety team'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '3.0.0'
+VERSION = '3.0.1'
 
 # Required Packages
 REQUIRED = [
@@ -40,6 +40,14 @@ try:
         long_description = '\n' + f.read()
 except FileNotFoundError:
     long_description = DESCRIPTION
+
+about = {}
+if not VERSION:
+    project_slug = NAME.lower().replace("-", "_").replace(" ", "_")
+    with open(os.path.join(here, project_slug, '__version__.py')) as f:
+        exec(f.read(), about)
+else:
+    about['__version__'] = VERSION
 
 
 class UploadCommand(Command):
@@ -73,7 +81,7 @@ class UploadCommand(Command):
         os.system('twine upload dist/*')
 
         self.status('Pushing git tags…')
-        os.system('git tag v{0}'.format(VERSION))
+        os.system('git tag v{0}'.format(about['__version__']))
         os.system('git push --tags')
 
         sys.exit()
@@ -81,7 +89,7 @@ class UploadCommand(Command):
 
 setup(
     name=NAME,
-    version=VERSION,
+    version=about['__version__'],
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
