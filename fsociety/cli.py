@@ -37,7 +37,7 @@ def menuitems():
     for value in MENU_ITEMS:
         name = command_name(value)
         tools = menutools(value)
-        items_str += f"{Back.WHITE + Fore.BLACK}{name}:{Style.RESET_ALL} \n{tools}\n\n"
+        items_str += f"{Back.WHITE}{Fore.BLACK}{name}:{Style.RESET_ALL} \n{tools}\n\n"
     return items_str
 
 
@@ -48,11 +48,12 @@ for item in MENU_ITEMS:
 def mainloop():
     print(MENU_TITLE)
     print(menuitems())
-    selected_command = input("Enter Command: ").strip()
-    if not selected_command:
-        print("Invalid Command")
+    selected_command = input(
+        f"{Fore.RED}Enter Command: {Fore.WHITE}").strip()
+    if not selected_command or not selected_command in items.keys():
+        print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return
-    print()
+    print(Style.RESET_ALL)
     try:
         func = items[selected_command].cli
         func()
