@@ -2,32 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import os
-from configparser import RawConfigParser
-from pathlib import Path
 
 import colorama
 from colorama import Fore, Back, Style
 
 # Core
-from fsociety.__version__ import __version__
-from fsociety.menu import set_readline
+from fsociety.core.menu import set_readline, format_tools
+from fsociety.core.config import get_config, write_config
 
 # Modules
 import fsociety.information_gathering
 import fsociety.passwords
 
 # Config
-install_dir = os.path.join(str(Path.home()), '.fsociety')
-config_file = os.path.join(install_dir, 'fsociety.cfg')
-config = RawConfigParser()
-if not os.path.exists(install_dir):
-    os.mkdir(install_dir)
-if not os.path.exists(config_file):
-    config["fsociety"] = {"version": __version__, "agreement": "false"}
-    with open(config_file, "w") as configfile:
-        config.write(configfile)
-config.read(config_file)
-config.set("fsociety", "version", __version__)
+config = get_config()
 
 # Menu
 TERMS = Fore.YELLOW + """
@@ -59,16 +47,12 @@ def command_name(module):
     return module.__name__.split(".")[-1]
 
 
-def menutools(module):
-    return "\n".join(["\t" + tool for tool in module.__tools__])
-
-
 def menuitems():
     items_str = str()
     for value in MENU_ITEMS:
         name = command_name(value)
-        tools = menutools(value)
-        items_str += f"{Back.WHITE}{Fore.BLACK}{name}:{Style.RESET_ALL} \n{tools}\n\n"
+        tools = format_tools(value.__tools__)
+        items_str += f"{Back.WHITE}{Fore.BLACK}{name}:{Style.RESET_ALL} {tools}\n\n"
     items_str += f"{Back.WHITE}{Fore.BLACK}exit{Style.RESET_ALL}\n"
     return items_str
 
@@ -88,11 +72,12 @@ for item in MENU_ITEMS:
 
 commands = list(items.keys()) + ["exit"]
 
+
 def mainloop():
     agreement()
     print(MENU_TITLE)
     print(menuitems())
-    selected_command=input(
+    selected_command = input(
         f"{Fore.RED}fsociety ~# {Fore.WHITE}").strip()
     if not selected_command or (not selected_command in commands):
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
@@ -101,7 +86,7 @@ def mainloop():
         raise KeyboardInterrupt
     print(Style.RESET_ALL)
     try:
-        func=items[selected_command].cli
+        func = items[selected_command].cli
         func()
     except Exception as e:
         print(str(e))
@@ -115,8 +100,7 @@ def cli():
             mainloop()
     except KeyboardInterrupt:
         print("\nExitting...")
-        with open(config_file, 'w') as configfile:
-            config.write(configfile)
+        write_config(config)
         exit(0)
 
 
