@@ -9,13 +9,19 @@ A Penetration Testing Framework
 ## Install
 
 ```bash
-pyenv install
+pip install -e .
 ```
 
 ## Usage
 
 ```bash
+python fsociety
+```
 
+## Develop
+
+```bash
+pip install -e ".[dev]"
 ```
 
 ## License
