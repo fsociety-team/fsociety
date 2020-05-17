@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import argparse
 
 import colorama
 from colorama import Fore, Back, Style
@@ -87,7 +88,7 @@ def mainloop():
         print(str(e))
 
 
-def cli():
+def interactive():
     colorama.init()
     try:
         while True:
@@ -99,5 +100,23 @@ def cli():
         exit(0)
 
 
+def main():
+    parser = argparse.ArgumentParser(
+        description='A Penetration Testing Framework')
+    parser.add_argument('-w', '--web', action='store_true',
+                        help='start web ui')
+    parser.add_argument('-i', '--interactive',
+                        action='store_true', help='start interaction cli')
+
+    args = parser.parse_args()
+
+    if args.interactive:
+        interactive()
+    elif args.web:
+        print("TODO: Webserver Here")
+    else:
+        interactive()
+
+
 if __name__ == "__main__":
-    cli()
+    main()
