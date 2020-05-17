@@ -16,7 +16,7 @@ URL = 'https://github.com/fsociety-team/fsociety'
 EMAIL = 'contact@fsocietyproject.ml'
 AUTHOR = 'fsociety team'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '3.0.1'
+VERSION = None
 
 # Required Packages
 REQUIRED = [
