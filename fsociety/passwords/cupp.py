@@ -9,7 +9,7 @@ class cuppRepo(GitHubRepo):
 
     def run(self):
         os.chdir(self.full_path)
-        os.system("python3 cupp.py -i")
+        return os.system("python3 cupp.py -i")
 
 
 cupp = cuppRepo()

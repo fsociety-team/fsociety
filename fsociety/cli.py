@@ -8,7 +8,7 @@ import colorama
 from colorama import Fore, Back, Style
 
 # Core
-from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt
+from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt, print_contributors, clear_screen
 from fsociety.core.config import get_config, write_config
 
 # Modules
@@ -37,11 +37,11 @@ MENU_TITLE = Fore.RED + """
 
 """ + Fore.RESET
 MENU_ITEMS = [fsociety.information_gathering, fsociety.passwords]
+BUILTIN_FUNCTIONS = {
+    "devs": print_contributors,
+    "exit": lambda: exec('raise KeyboardInterrupt'),
+}
 items = dict()
-
-
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def menuitems():
@@ -50,7 +50,8 @@ def menuitems():
         name = module_name(value)
         tools = format_tools(value.__tools__)
         items_str += f"{format_menu_item(name)} {tools}\n\n"
-    items_str += f"{format_menu_item('exit')}"
+    for key in BUILTIN_FUNCTIONS.keys():
+        items_str += f"{format_menu_item(key)}\n\n"
     return items_str
 
 
@@ -67,7 +68,7 @@ def agreement():
 for item in MENU_ITEMS:
     items[module_name(item)] = item
 
-commands = list(items.keys()) + ["exit"]
+commands = list(items.keys()) + list(BUILTIN_FUNCTIONS.keys())
 
 
 def mainloop():
@@ -78,8 +79,9 @@ def mainloop():
     if not selected_command or (not selected_command in commands):
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return
-    if selected_command == "exit":
-        raise KeyboardInterrupt
+    if selected_command in BUILTIN_FUNCTIONS.keys():
+        func = BUILTIN_FUNCTIONS.get(selected_command)
+        return func()
     print(Style.RESET_ALL)
     try:
         func = items[selected_command].cli
@@ -107,11 +109,14 @@ def main():
                         help='start web ui')
     parser.add_argument('-i', '--interactive',
                         action='store_true', help='start interaction cli')
+    parser.add_argument('-t', '--tool', help='run tool')
 
     args = parser.parse_args()
 
     if args.interactive:
         interactive()
+    elif args.tool:
+        print("TODO: Run tool by name")
     elif args.web:
         print("TODO: Webserver Here")
     else:
