@@ -12,10 +12,22 @@ A Penetration Testing Framework
 pip install fsociety
 ```
 
-## Usage
+## Update
 
 ```bash
-fsociety
+pip install --upgrade fsociety
+```
+
+## Usage
+
+```txt
+usage: fsociety [-h] [-w] [-i] [-t TOOL]
+
+A Penetration Testing Framework
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i, --interactive     start interaction cli
 ```
 
 ## Develop
