@@ -1,3 +1,7 @@
+---
+title: Home
+---
+
 [![fsociety gif](https://raw.githubusercontent.com/fsociety-team/fsociety/master/fsociety.gif)](https://fsociety.dev/)
 
 [comment]: # "TODO: Replace with fsociety gif in the same style"
