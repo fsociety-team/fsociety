@@ -89,6 +89,8 @@ def tools_cli(name, tools):
         response = tool.run()
         if response > 0:
             raise Exception
+    except KeyboardInterrupt:
+        return
     except Exception as e:
         print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
         print(str(e))

@@ -38,7 +38,7 @@ class GitHubRepo(metaclass=ABCMeta):
         return self.full_path
 
     def install(self, no_confirm=False):
-        if no_confirm or not confirm(f"Do you want to install https://github.com/{self.path}?"):
+        if no_confirm or not confirm(f"\nDo you want to install https://github.com/{self.path}?"):
             print("Cancelled")
             return
         self.clone()
@@ -68,6 +68,7 @@ class GitHubRepo(metaclass=ABCMeta):
             else:
                 command = install
 
+            print()
             os.system(command)
 
     def installed(self):
