@@ -77,10 +77,7 @@ def mainloop():
     agreement()
     print(MENU_TITLE)
     print(menuitems())
-    try:
-        selected_command = input(prompt()).strip()
-    except KeyboardInterrupt:
-        return
+    selected_command = input(prompt()).strip()
     if not selected_command or (not selected_command in commands):
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return
