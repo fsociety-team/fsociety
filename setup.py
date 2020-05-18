@@ -15,7 +15,7 @@ DESCRIPTION = 'A Penetration Testing Framework'
 URL = 'https://github.com/fsociety-team/fsociety'
 EMAIL = 'contact@fsocietyproject.ml'
 AUTHOR = 'fsociety team'
-REQUIRES_PYTHON = '>=3.6.0'
+REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
 # Required Packages
