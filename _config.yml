@@ -1,1 +1,17 @@
+title: fsociety
+description: A Penetration Testing Framework
+url: https://fsociety.dev/
+
+aux_links:
+  "Join our Discord":
+    - "https://discord.gg/BaBpuPn"
+
+footer_content: "Copyright &copy; 2020 fsociety-team. Distributed by an <a href=\"https://github.com/fsociety-team/fsociety/tree/master/LICENSE\">MIT license.</a>"
+
 remote_theme: pmarsceill/just-the-docs
+color_scheme: nil
+
+ga_tracking: UA-111350566-3
+
+plugins:
+  - jekyll-seo-tag
