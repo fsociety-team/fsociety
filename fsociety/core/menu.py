@@ -15,7 +15,6 @@ class CommandNotFound(Exception):
 class CommandCompleter(object):
     def __init__(self, options):
         self.options = sorted(options)
-        return
 
     def complete(self, text, state):
         response = None
@@ -94,7 +93,7 @@ def tools_cli(name, tools):
     except Exception as e:
         print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
         print(str(e))
-        traceback.print_exc()
+        # traceback.print_exc()
         if confirm("Do you want to reinstall?"):
             os.chdir(install_dir)
             shutil.rmtree(tool.full_path)

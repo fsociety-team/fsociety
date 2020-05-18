@@ -17,4 +17,3 @@ ga_tracking: UA-111350566-3
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-seo
