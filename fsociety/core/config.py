@@ -20,7 +20,9 @@ DEFAULT_CONFIG = {
     "version": __version__,
     "agreement": "false",
     "ssh_clone": "false",
-    "os": current_platform
+    "os": current_platform,
+    "host_file": "hosts.txt",
+    "usernames_file": "usernames.txt"
 }
 
 

@@ -1,4 +1,4 @@
-![fsociety gif](fsociety.gif)
+![fsociety gif](https://github.com/fsociety-team/fsociety/blob/master/fsociety.gif)
 
 [comment]: # "TODO: Replace with fsociety gif in the same style"
 

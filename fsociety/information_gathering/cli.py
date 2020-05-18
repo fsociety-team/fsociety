@@ -2,9 +2,11 @@
 from fsociety.core.menu import tools_cli
 
 from .nmap import nmap
+from .sherlock import sherlock
 
 __tools__ = {
-    "nmap": nmap
+    "nmap": nmap,
+    "sherlock": sherlock,
 }
 
 
