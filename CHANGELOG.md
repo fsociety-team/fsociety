@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.5] - 05-17-2020
+
+- Changed minimum Python version to 3.7
+- Added PyPi Badge to `README.md`
+
 ## [3.0.4] - 05-17-2020
 
 - Added hosts file at `~/.fsociety/hosts.txt`
@@ -29,7 +34,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: hhttps://github.com/fsociety-team/fsociety/compare/v3.0.4...HEAD
+[unreleased]: hhttps://github.com/fsociety-team/fsociety/compare/v3.0.5...HEAD
+[3.0.5]: https://github.com/fsociety-team/fsociety/compare/v3.0.4...v3.0.5
 [3.0.4]: https://github.com/fsociety-team/fsociety/compare/v3.0.3...v3.0.4
 [3.0.3]: https://github.com/fsociety-team/fsociety/compare/v3.0.2...v3.0.3
 [3.0.2]: https://github.com/fsociety-team/fsociety/compare/v3.0.0...v3.0.2
