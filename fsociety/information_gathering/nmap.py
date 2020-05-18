@@ -5,10 +5,6 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
 from fsociety.core.hosts import get_hosts, add_host, InvalidHost
 
-install = {
-    "default": "./configure && make && make install",
-}
-
 premade_args = {
     "simple": "{host}",
     "common_ports": "-F {host}",
@@ -23,7 +19,7 @@ premade_args = {
 
 
 class nmapRepo(GitHubRepo):
-    def __init__(self, path="nmap/nmap", install=install):
+    def __init__(self, path="nmap/nmap", install="./configure && make && make install"):
         super().__init__(path=path, install=install)
 
     def installed(self):
@@ -46,8 +42,7 @@ class nmapRepo(GitHubRepo):
         if selected and selected in premade_args.keys():
             args = premade_args.get(selected).format(host=host)
             return os.system(f"nmap {args}")
-        else:
-            return self.run()
+        return self.run()
 
 
 nmap = nmapRepo()

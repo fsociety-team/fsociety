@@ -13,11 +13,11 @@ class sherlockRepo(GitHubRepo):
         os.chdir(self.full_path)
         usernames = get_usernames()
         set_readline(usernames)
-        inputted_usernames = input("\nEnter one or more usernames: ").strip()
-        for username in inputted_usernames.split():
+        user_usernames = input("\nEnter one or more usernames: ").strip()
+        for username in user_usernames.split():
             if not username in usernames:
                 add_username(username)
-        return os.system(f"python3 sherlock {inputted_usernames} -r")
+        return os.system(f"python3 sherlock {user_usernames} -r")
 
 
 sherlock = sherlockRepo()
