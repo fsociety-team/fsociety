@@ -27,4 +27,4 @@ pip install -e ".[dev]"
 
 ## License
 
-[MIT Licence](LICENSE)
+[MIT Licence](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
