@@ -13,8 +13,8 @@ from setuptools import find_packages, setup, Command
 NAME = 'fsociety'
 DESCRIPTION = 'A Penetration Testing Framework'
 URL = 'https://github.com/fsociety-team/fsociety'
-EMAIL = 'contact@fsocietyproject.ml'
-AUTHOR = 'fsociety team'
+EMAIL = 'contact@fsociety.dev'
+AUTHOR = 'fsociety-team'
 REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
@@ -27,7 +27,6 @@ REQUIRED = [
 # Optional Packages
 EXTRAS = {
     'dev': [
-        'pytest',
         'autopep8',
         'twine',
     ]
