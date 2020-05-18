@@ -38,7 +38,7 @@ class nmapRepo(GitHubRepo):
         if (host not in hosts):
             add_host(host)
         longest_key = max([len(key) for key in premade_args.keys()]) + 2
-        print("\nName".ljust(longest_key) + "| Args")
+        print("\nName".ljust(longest_key) + " | Args")
         for name, args in premade_args.items():
             print(f"{name.ljust(longest_key)}: {args.format(host=host)}")
         set_readline(premade_args.keys())

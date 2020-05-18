@@ -14,6 +14,7 @@ from fsociety.core.config import get_config, write_config
 # Modules
 import fsociety.information_gathering
 import fsociety.passwords
+import fsociety.web_apps
 
 # Config
 config = get_config()
@@ -36,7 +37,8 @@ MENU_TITLE = Fore.RED + """
 88     8bodP'  YbodP   YboodP 88 888888   88    dP
 
 """ + Fore.RESET
-MENU_ITEMS = [fsociety.information_gathering, fsociety.passwords]
+MENU_ITEMS = [fsociety.information_gathering,
+              fsociety.passwords, fsociety.web_apps]
 BUILTIN_FUNCTIONS = {
     "devs": print_contributors,
     "exit": lambda: exec('raise KeyboardInterrupt'),
@@ -75,7 +77,10 @@ def mainloop():
     agreement()
     print(MENU_TITLE)
     print(menuitems())
-    selected_command = input(prompt()).strip()
+    try:
+        selected_command = input(prompt()).strip()
+    except KeyboardInterrupt:
+        return
     if not selected_command or (not selected_command in commands):
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return
