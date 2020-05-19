@@ -98,12 +98,10 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=['fsociety'],
+    packages=find_packages(
+        exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     entry_points={
         'console_scripts': ['fsociety=fsociety:cli'],
-    },
-    cmdclass={
-        'upload': UploadCommand,
     },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
@@ -120,4 +118,8 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
+    # python setup.py upload
+    cmdclass={
+        'upload': UploadCommand,
+    },
 )

@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0] - 05-19-2020
+
+- Fixed `packages` in `setup.py`
+
 ## [3.0.9] - 05-19-2020
 
 - Fixed `setup.py`
@@ -54,7 +58,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.0.9...HEAD
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/fsociety-team/fsociety/compare/v3.0.9...v3.1.0
 [3.0.9]: https://github.com/fsociety-team/fsociety/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/fsociety-team/fsociety/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/fsociety-team/fsociety/compare/v3.0.6...v3.0.7
