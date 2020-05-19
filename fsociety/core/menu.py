@@ -6,9 +6,7 @@ from colorama import Fore, Back, Style
 
 from fsociety.core.config import install_dir
 
-
-class CommandNotFound(Exception):
-    pass
+BACK_COMMANDS = ["exit", "back", "return"]
 
 
 class CommandCompleter(object):
@@ -76,10 +74,14 @@ def input_wait():
 def tools_cli(name, tools):
     for tool in tools:
         print(f"{format_menu_item(str(tool))}\n")
-    set_readline(tools)
+    print(f"{format_menu_item(str('back'))}\n")
+    set_readline(list(tools.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
     if not selected_tool in tools.keys():
-        raise CommandNotFound(selected_tool)
+        if selected_tool in BACK_COMMANDS:
+            return
+        print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
+        return
     tool = tools.get(selected_tool)
     if hasattr(tool, "install") and not tool.installed():
         tool.install()
