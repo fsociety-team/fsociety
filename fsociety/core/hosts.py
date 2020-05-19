@@ -24,5 +24,7 @@ def get_hosts():
 
 
 def add_host(host):
+    if not host:
+        raise ValueError
     with open(full_path, "a") as hostfile:
         hostfile.write(f"\n{host}")

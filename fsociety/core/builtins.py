@@ -4,6 +4,7 @@ from requests import get
 from colorama import Fore
 
 from .menu import input_wait
+from .config import install_dir
 
 
 def print_contributors():
@@ -26,4 +27,5 @@ def print_contributors():
 def spawn_shell():
     print("Enter `exit` to return to fsociety")
     shell = os.getenv("SHELL")
+    os.chdir(install_dir)
     os.system(shell)
