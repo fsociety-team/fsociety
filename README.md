@@ -21,7 +21,7 @@ pip install --upgrade fsociety
 ## Usage
 
 ```txt
-usage: fsociety [-h] [-w] [-i] [-t TOOL]
+usage: fsociety [-h] [-i]
 
 A Penetration Testing Framework
 
