@@ -27,6 +27,7 @@ REQUIRED = [
 # Optional Packages
 EXTRAS = {
     'dev': [
+        'wheel',
         'pylint',
         'autopep8',
         'twine',
