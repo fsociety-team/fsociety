@@ -55,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial Release
 
 [unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.0.9...HEAD
-[3.0.8]: https://github.com/fsociety-team/fsociety/compare/v3.0.8...v3.0.9
+[3.0.9]: https://github.com/fsociety-team/fsociety/compare/v3.0.8...v3.0.9
 [3.0.8]: https://github.com/fsociety-team/fsociety/compare/v3.0.7...v3.0.8
 [3.0.7]: https://github.com/fsociety-team/fsociety/compare/v3.0.6...v3.0.7
 [3.0.6]: https://github.com/fsociety-team/fsociety/compare/v3.0.5...v3.0.6
