@@ -2,7 +2,6 @@ import os
 import shutil
 import traceback
 
-from requests import get
 from colorama import Fore, Back, Style
 
 from fsociety.core.config import install_dir
@@ -82,11 +81,11 @@ def tools_cli(name, tools):
     if not selected_tool in tools.keys():
         raise CommandNotFound(selected_tool)
     tool = tools.get(selected_tool)
-    if not tool.installed():
+    if hasattr(tool, "install") and not tool.installed():
         tool.install()
     try:
         response = tool.run()
-        if response > 0:
+        if response and response > 0:
             raise Exception
     except KeyboardInterrupt:
         return
@@ -94,7 +93,7 @@ def tools_cli(name, tools):
         print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
         print(str(e))
         # traceback.print_exc()
-        if confirm("Do you want to reinstall?"):
+        if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
             os.chdir(install_dir)
             shutil.rmtree(tool.full_path)
             tool.install()
@@ -106,20 +105,3 @@ def confirm(message="Do you want to?"):
     if response:
         return response[0] == "y"
     return False
-
-
-def print_contributors():
-    print(Fore.RED + """
-8888b.  888888 Yb    dP .dP"Y8 
- 8I  Yb 88__    Yb  dP  `Ybo." 
- 8I  dY 88""     YbdP   o.`Y8b 
-8888Y"  888888    YP    8bodP'
-""")
-    response = get(
-        'https://api.github.com/repos/fsociety-team/fsociety/contributors')
-    contributors = response.json()
-    for contributor in sorted(contributors, key=lambda c: c['contributions'], reverse=True):
-        username = contributor.get("login")
-        print(f" {username} ".center(30, "-"))
-    print(Fore.RESET)
-    input_wait()
