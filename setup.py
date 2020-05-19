@@ -97,7 +97,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    py_modules=['fsociety'],
+    packages=['fsociety'],
     entry_points={
         'console_scripts': ['fsociety=fsociety:cli'],
     },
