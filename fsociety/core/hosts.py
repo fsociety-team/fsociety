@@ -11,10 +11,6 @@ class InvalidHost(Exception):
     pass
 
 
-def verify_host(host):
-    print("TODO: Finish Function")
-
-
 def get_hosts():
     try:
         with open(full_path, "r") as hostfile:
