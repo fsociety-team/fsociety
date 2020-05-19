@@ -22,7 +22,7 @@ pip install --upgrade fsociety
 
 ## Usage
 
-```txt
+```bash
 usage: fsociety [-h] [-i]
 
 A Penetration Testing Framework
