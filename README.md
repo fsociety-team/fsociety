@@ -6,6 +6,8 @@
 
 A Penetration Testing Framework
 
+[comment]: # "TODO: Add CLI graphic here"
+
 ## Install
 
 ```bash
