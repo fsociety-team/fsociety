@@ -41,6 +41,13 @@ git clone https://github.com/fsociety-team/fsociety.git
 pip install -e ".[dev]"
 ```
 
+## Docker
+
+```bash
+docker build -t fsociety .
+docker run -it fsociety # -it makes the terminal interactive
+```
+
 ## License
 
 [MIT Licence](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
