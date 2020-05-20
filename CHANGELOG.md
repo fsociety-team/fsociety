@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.1.2] - 05-20-2020
+
+- Added [changeme](https://github.com/ztgrace/changeme)
+- Added nmap scripts
+
 ## [3.1.1] - 05-19-2020
 
 - Added [sqlmap](https://github.com/sqlmapproject/sqlmap)

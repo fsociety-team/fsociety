@@ -6,7 +6,7 @@
 
 A Penetration Testing Framework
 
-[comment]: # "TODO: Add CLI graphic here"
+[comment]: # "UPDATE: Add CLI graphic here"
 
 ![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png)
 
