@@ -31,7 +31,7 @@ class print_contributors(Utility):
 class spawn_shell(Utility):
     def run(self):
         print("Enter `exit` to return to fsociety")
-        shell = os.getenv("SHELL")
+        shell = os.getenv("SHELL", "/bin/bash")
         os.chdir(install_dir)
         os.system(shell)
 
@@ -51,7 +51,7 @@ tools = [host2ip, spawn_shell, print_contributors]
 
 __tools__ = dict()
 for tool in tools:
-    __tools__[tool.__name__] = tool
+    __tools__[tool.__name__] = tool()
 
 
 def cli():
