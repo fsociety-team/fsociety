@@ -1,4 +1,4 @@
-[![fsociety gif](https://raw.githubusercontent.com/fsociety-team/fsociety/master/fsociety.gif)](https://fsociety.dev/)
+[![fsociety gif](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.gif)](https://fsociety.dev/)
 
 [comment]: # "TODO: Replace with fsociety gif in the same style"
 
@@ -7,6 +7,8 @@
 A Penetration Testing Framework
 
 [comment]: # "TODO: Add CLI graphic here"
+
+![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png)
 
 ## Install
 
