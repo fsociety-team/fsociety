@@ -10,9 +10,7 @@ from colorama import Fore, Back, Style
 # Core
 from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt, clear_screen
 from fsociety.core.config import get_config, write_config
-from fsociety.core.builtins import print_contributors, spawn_shell
-
-# Modules
+import fsociety.core.utilities
 import fsociety.information_gathering
 import fsociety.passwords
 import fsociety.web_apps
@@ -40,10 +38,8 @@ MENU_TITLE = Fore.RED + """
 
 """ + Fore.RESET
 MENU_ITEMS = [fsociety.information_gathering,
-              fsociety.passwords, fsociety.web_apps, fsociety.obfuscation]
+              fsociety.passwords, fsociety.web_apps, fsociety.obfuscation, fsociety.core.utilities]
 BUILTIN_FUNCTIONS = {
-    "shell": spawn_shell,
-    "devs": print_contributors,
     "exit": lambda: exec('raise KeyboardInterrupt'),
 }
 items = dict()

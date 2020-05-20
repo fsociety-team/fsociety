@@ -13,6 +13,7 @@
 - [cupp](https://github.com/Mebus/cupp)
 - [Cr3d0v3r](https://github.com/D4Vinci/Cr3d0v3r)
 - [Hash-Buster](https://github.com/s0md3v/Hash-Buster)
+- [changeme](https://github.com/ztgrace/changeme)
 
 ## Web Apps
 

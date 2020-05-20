@@ -77,3 +77,18 @@ class GitHubRepo(metaclass=ABCMeta):
     @abstractmethod
     def run(self):
         pass
+
+
+class Gist(GitHubRepo):
+    def clone(self):
+        if os.path.exists(self.full_path):
+            os.chdir(self.full_path)
+            os.system(f"git pull")
+            return self.full_path
+        url = f"https://gist.github.com/{self.path}"
+        if config.getboolean("fsociety", "ssh_clone"):
+            url = f"git@gist.github.com:{self.path}.git"
+        os.system(f"git clone {url} {self.full_path}")
+        if not os.path.exists(self.full_path):
+            raise CloneError(f"{self.full_path} not found")
+        return self.full_path
