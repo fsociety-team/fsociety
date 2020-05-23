@@ -1,6 +1,8 @@
-[![fsociety gif](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.gif)](https://fsociety.dev/)
-
-[comment]: # "TODO: Replace with fsociety gif in the same style"
+<div align="center">
+  <a href="https://fsociety.dev/">
+    <img width="467" height="78" src="https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png" alt="fsociety">
+  </a>
+</div>
 
 # fsociety [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
 
