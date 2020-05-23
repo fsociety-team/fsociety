@@ -3,13 +3,14 @@
 
 import os
 import argparse
+import platform
 
 import colorama
 from colorama import Fore, Back, Style
 
 # Core
 from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt, clear_screen
-from fsociety.core.config import get_config, write_config
+from fsociety.core.config import get_config, write_config, config_file
 import fsociety.core.utilities
 import fsociety.information_gathering
 import fsociety.passwords
@@ -31,10 +32,12 @@ designed to interrupt, destroy or limit the functionality of any
 computer software or hardware or telecommunications equipment;
 """ + Fore.RESET
 MENU_TITLE = Fore.RED + """
-888888 .dP"Y8  dP"Yb   dP""b8 88 888888 888888 Yb  dP
-88__   `Ybo." dP   Yb dP   `" 88 88__     88    YbdP
-88""   o.`Y8b Yb   dP Yb      88 88""     88     8P
-88     8bodP'  YbodP   YboodP 88 888888   88    dP
+    ____                _      __       
+   / __/________  _____(_)__  / /___  __
+  / /_/ ___/ __ \/ ___/ / _ \/ __/ / / /
+ / __(__  ) /_/ / /__/ /  __/ /_/ /_/ / 
+/_/ /____/\____/\___/_/\___/\__/\__, /  
+                               /____/   
 
 """ + Fore.RESET
 MENU_ITEMS = [fsociety.information_gathering,
@@ -91,6 +94,25 @@ def mainloop():
         print(str(e))
 
 
+def info():
+    data = dict()
+    # Config File
+    with open(config_file) as file:
+        data["Config File"] = file.read().strip()
+    data["Python Version"] = platform.python_version()
+    data["Platform"] = platform.platform()
+    os = config.get("fsociety", "os")
+    if os == "macos":
+        data["macOS"] = platform.mac_ver()[0]
+    elif os == "windows":
+        data["Windows"] = platform.win32_ver()[0]
+
+    for key, value in data.items():
+        print(f"# {key}")
+        print(value)
+        print()
+
+
 def interactive():
     colorama.init()
     try:
@@ -106,20 +128,23 @@ def interactive():
 def main():
     parser = argparse.ArgumentParser(
         description='A Penetration Testing Framework')
-    parser.add_argument('-w', '--web', action='store_true',
-                        help='start web ui')
     parser.add_argument('-i', '--interactive',
                         action='store_true', help='start interaction cli')
-    parser.add_argument('-t', '--tool', help='run tool')
+    parser.add_argument('-I', '--info',
+                        action='store_true', help='gets fsociety info')
+    # parser.add_argument('-w', '--web', action='store_true', help='start web ui')
+    # parser.add_argument('-t', '--tool', help='run tool')
 
     args = parser.parse_args()
 
-    if args.interactive:
+    if args.info:
+        info()
+    elif args.interactive:
         interactive()
-    elif args.tool:
-        print("TODO: Run tool by name")
-    elif args.web:
-        print("TODO: Webserver Here")
+    # elif args.tool:
+    #     print("TODO: Run tool by name")
+    # elif args.web:
+    #     print("TODO: Webserver Here")
     else:
         interactive()
 

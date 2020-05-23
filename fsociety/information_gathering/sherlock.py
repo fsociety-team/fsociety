@@ -6,8 +6,10 @@ from fsociety.core.usernames import get_usernames, add_username
 
 
 class sherlockRepo(GitHubRepo):
-    def __init__(self, path="sherlock-project/sherlock", install={"pip": "requirements.txt"}):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="sherlock-project/sherlock",
+                         install={"pip": "requirements.txt"}, 
+                         description="Hunt down social media accounts by username across social networks")
 
     def run(self):
         os.chdir(self.full_path)

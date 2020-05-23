@@ -6,8 +6,10 @@ from fsociety.core.usernames import get_usernames, add_username
 
 
 class sublist3rRepo(GitHubRepo):
-    def __init__(self, path="aboul3la/Sublist3r", install={"pip": "requirements.txt"}):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="aboul3la/Sublist3r",
+                         install={"pip": "requirements.txt"}, 
+                         description="Fast subdomains enumeration tool for penetration testers")
 
     def run(self):
         os.chdir(self.full_path)

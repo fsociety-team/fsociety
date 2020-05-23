@@ -5,8 +5,10 @@ from fsociety.core.menu import confirm
 
 
 class sqlmapRepo(GitHubRepo):
-    def __init__(self, path="sqlmapproject/sqlmap", install=None):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="sqlmapproject/sqlmap", 
+                         install=None,
+                         description="Automatic SQL injection and database takeover tool")
 
     def run(self):
         os.chdir(self.full_path)

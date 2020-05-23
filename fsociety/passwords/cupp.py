@@ -4,8 +4,10 @@ from fsociety.core.repo import GitHubRepo
 
 
 class cuppRepo(GitHubRepo):
-    def __init__(self, path="Mebus/cupp", install=None):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="Mebus/cupp",
+                         install=None,
+                         description="Common User Passwords Profiler")
 
     def run(self):
         os.chdir(self.full_path)

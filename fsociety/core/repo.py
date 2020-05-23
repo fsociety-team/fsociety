@@ -16,13 +16,15 @@ class CloneError(Exception):
 
 
 class GitHubRepo(metaclass=ABCMeta):
-    def __init__(self, path="fsociety-team/fsociety", install="pip install -e ."):
+    def __init__(self, path="fsociety-team/fsociety", install="pip install -e .", description=None):
         self.path = path
+        self.name = self.path.split("/")[-1]
         self.install_options = install
-        self.full_path = os.path.join(install_dir, self.path.split("/")[-1])
+        self.full_path = os.path.join(install_dir, self.name)
+        self.description = description
 
     def __str__(self):
-        return self.path
+        return self.name.lower().replace("-", "_")
 
     def clone(self):
         if os.path.exists(self.full_path):

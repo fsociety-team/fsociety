@@ -6,8 +6,10 @@ from fsociety.core.config import install_dir
 
 
 class s3scannerRepo(GitHubRepo):
-    def __init__(self, path="sa7mon/S3Scanner", install={"pip": "requirements.txt"}):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="sa7mon/S3Scanner",
+                         install={"pip": "requirements.txt"},
+                         description="A tool to find open S3 buckets and dump their contents ")
 
     def run(self):
         os.chdir(self.full_path)

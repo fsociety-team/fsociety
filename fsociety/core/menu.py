@@ -50,12 +50,13 @@ def clear_screen():
 
 
 def format_menu_item(item):
-    return f"{Back.WHITE}{Fore.BLACK}{item}{Style.RESET_ALL}"
+    string = str(item)
+    if hasattr(item, "description") and item.description:
+        string += f" - {item.description}"
+    return f"{Back.WHITE}{Fore.BLACK}{string}{Style.RESET_ALL}"
 
 
 def format_tools(tools):
-    if isinstance(tools, dict):
-        tools = tools.keys()
     return "".join([f"\n\t{str(tool)}" for tool in tools])
 
 
@@ -72,17 +73,19 @@ def input_wait():
 
 
 def tools_cli(name, tools):
+    tools_dict = dict()
     for tool in tools:
-        print(f"{format_menu_item(str(tool))}\n")
+        tools_dict[str(tool)] = tool
+        print(f"{format_menu_item(tool)}\n")
     print(f"{format_menu_item(str('back'))}\n")
-    set_readline(list(tools.keys()) + BACK_COMMANDS)
+    set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
-    if not selected_tool in tools.keys():
+    if not selected_tool in tools_dict.keys():
         if selected_tool in BACK_COMMANDS:
             return
         print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
         return
-    tool = tools.get(selected_tool)
+    tool = tools_dict.get(selected_tool)
     if hasattr(tool, "install") and not tool.installed():
         tool.install()
     try:
