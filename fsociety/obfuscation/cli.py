@@ -3,9 +3,7 @@ from fsociety.core.menu import tools_cli
 
 from .cuteit import cuteit
 
-__tools__ = {
-    "cuteit": cuteit
-}
+__tools__ = [cuteit]
 
 
 def cli():

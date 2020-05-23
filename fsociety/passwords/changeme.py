@@ -6,8 +6,10 @@ from fsociety.core.hosts import get_hosts, add_host, InvalidHost
 
 
 class changemeRepo(GitHubRepo):
-    def __init__(self, path="ztgrace/changeme", install={"pip": "requirements.txt"}):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="ztgrace/changeme",
+                         install={"pip": "requirements.txt"},
+                         description="A default credential scanner")
 
     def run(self):
         os.chdir(self.full_path)

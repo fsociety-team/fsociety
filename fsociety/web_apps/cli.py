@@ -3,9 +3,7 @@ from fsociety.core.menu import tools_cli
 
 from .xsstrike import xsstrike
 
-__tools__ = {
-    "xsstrike": xsstrike
-}
+__tools__ = [xsstrike]
 
 
 def cli():

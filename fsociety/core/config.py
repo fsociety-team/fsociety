@@ -15,6 +15,7 @@ elif platform.startswith("linux") or platform.startswith("freebsd"):
 
 install_dir = os.path.join(str(Path.home()), ".fsociety")
 config_file = os.path.join(install_dir, "fsociety.cfg")
+github_path = "fsociety-team/fsociety"
 
 DEFAULT_CONFIG = {
     "version": __version__,

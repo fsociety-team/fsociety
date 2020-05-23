@@ -6,8 +6,10 @@ from fsociety.core.usernames import get_usernames, add_username
 
 
 class cr3dov3rRepo(GitHubRepo):
-    def __init__(self, path="D4Vinci/Cr3dOv3r", install={"pip": "requirements.txt"}):
-        super().__init__(path=path, install=install)
+    def __init__(self):
+        super().__init__(path="D4Vinci/Cr3dOv3r",
+                         install={"pip": "requirements.txt"},
+                         description="Your best friend in credential reuse attacks")
 
     def run(self):
         os.chdir(self.full_path)

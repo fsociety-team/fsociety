@@ -6,12 +6,7 @@ from .cr3dov3r import cr3dov3r
 from .hash_buster import hash_buster
 from .changeme import changeme
 
-__tools__ = {
-    "cupp": cupp,
-    "cr3dov3r": cr3dov3r,
-    "hash_buster": hash_buster,
-    "changeme": changeme,
-}
+__tools__ = [cupp, cr3dov3r, hash_buster, changeme]
 
 
 def cli():
