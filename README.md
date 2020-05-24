@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# fsociety [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
+# fsociety [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Docker Automated build](https://img.shields.io/docker/automated/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/repository/docker/fsocietyteam/fsociety) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
 
 A Penetration Testing Framework
 
@@ -46,8 +46,8 @@ pip install -e ".[dev]"
 ## Docker
 
 ```bash
-docker build -t fsociety .
-docker run -it fsociety # -it makes the terminal interactive
+docker pull fsocietyteam/fsociety
+docker run -it fsocietyteam/fsociety # -it makes the terminal interactive
 ```
 
 ## License
