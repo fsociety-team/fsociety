@@ -128,10 +128,10 @@ def interactive():
 def main():
     parser = argparse.ArgumentParser(
         description='A Penetration Testing Framework')
-    parser.add_argument('-i', '--interactive',
-                        action='store_true', help='start interaction cli')
-    parser.add_argument('-I', '--info',
+    parser.add_argument('-i', '--info',
                         action='store_true', help='gets fsociety info')
+    parser.add_argument('-s', '--suggest',
+                        action='store_true', help='suggest a tool')
     # parser.add_argument('-w', '--web', action='store_true', help='start web ui')
     # parser.add_argument('-t', '--tool', help='run tool')
 
@@ -139,8 +139,8 @@ def main():
 
     if args.info:
         info()
-    elif args.interactive:
-        interactive()
+    elif args.suggest:
+        fsociety.core.utilities.suggest_tool()
     # elif args.tool:
     #     print("TODO: Run tool by name")
     # elif args.web:

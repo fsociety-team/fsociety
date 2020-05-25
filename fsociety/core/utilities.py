@@ -47,7 +47,7 @@ class spawn_shell(Utility):
         os.system(shell)
 
 
-class suggest(Utility):
+class suggest_tool(Utility):
     def __init__(self):
         super().__init__(description="Suggest a tool or utility")
 
@@ -77,7 +77,7 @@ class print_contributors(Utility):
 
 
 __tools__ = [tool() for tool in [host2ip, base64_decode,
-                                 spawn_shell, suggest, print_contributors]]
+                                 spawn_shell, suggest_tool, print_contributors]]
 
 
 def cli():
