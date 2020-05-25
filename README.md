@@ -4,7 +4,7 @@
   </a>
 </div>
 
-# fsociety [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/r/fsocietyteam/fsociety) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE) ![Twitter Follow](https://img.shields.io/twitter/follow/fsociety_team?color=blue&label=Follow%20Us%20on%20Twitter&logo=twitter&style=flat-square)
+# fsociety [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/r/fsocietyteam/fsociety) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE) ![Twitter Follow](https://img.shields.io/twitter/follow/fsociety_team?color=blue&label=Follow%20Us&logo=twitter&style=flat-square)
 
 A Penetration Testing Framework
 
@@ -27,13 +27,14 @@ pip install --upgrade fsociety
 ## Usage
 
 ```bash
-usage: fsociety [-h] [-i]
+usage: fsociety [-h] [-i] [-s]
 
 A Penetration Testing Framework
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -i, --interactive     start interaction cli
+  -h, --help     show this help message and exit
+  -i, --info     gets fsociety info
+  -s, --suggest  suggest a tool
 ```
 
 ## Develop
