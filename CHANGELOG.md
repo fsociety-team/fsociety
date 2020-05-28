@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
-## [3.1.7] - 05-28-2020
+## [3.1.8] - 05-28-2020
 
 - Fixed config
 - Cleaned up workflow
@@ -100,8 +100,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.7...HEAD
-[3.1.7]: https://github.com/fsociety-team/fsociety/compare/v3.1.5...v3.1.7
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.8...HEAD
+[3.1.8]: https://github.com/fsociety-team/fsociety/compare/v3.1.5...v3.1.8
 [3.1.5]: https://github.com/fsociety-team/fsociety/compare/v3.1.4...v3.1.5
 [3.1.4]: https://github.com/fsociety-team/fsociety/compare/v3.1.3...v3.1.4
 [3.1.3]: https://github.com/fsociety-team/fsociety/compare/v3.1.2...v3.1.3
