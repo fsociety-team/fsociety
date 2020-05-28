@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added [bettercap](https://github.com/bettercap/bettercap)
 - Moved [nmap](https://github.com/nmap/nmap) to Networking
 - Added [Photon](https://github.com/s0md3v/Photon)
+- Added [gitGraber](https://github.com/hisxo/gitGraber)
 
 ## [3.1.4] - 05-28-2020
 
