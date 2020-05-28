@@ -51,10 +51,10 @@ else:
     about['__version__'] = VERSION
 
 
-class UploadCommand(Command):
-    """Support setup.py upload."""
+class TagCommand(Command):
+    """Support setup.py push_tag."""
 
-    description = 'Build and publish the package.'
+    description = 'Push latest version as tag.'
     user_options = []
 
     @staticmethod
@@ -68,19 +68,6 @@ class UploadCommand(Command):
         pass
 
     def run(self):
-        try:
-            self.status('Removing previous builds…')
-            rmtree(os.path.join(here, 'dist'))
-        except OSError:
-            pass
-
-        self.status('Building Source and Wheel (universal) distribution…')
-        os.system(
-            '{0} setup.py sdist bdist_wheel --universal'.format(sys.executable))
-
-        self.status('Uploading the package to PyPI via Twine…')
-        os.system('twine upload dist/*')
-
         self.status('Pushing git tags…')
         os.system('git tag v{0}'.format(about['__version__']))
         os.system('git push --tags')
@@ -120,6 +107,6 @@ setup(
     ],
     # python setup.py upload
     cmdclass={
-        'upload': UploadCommand,
+        'push_tag': TagCommand,
     },
 )
