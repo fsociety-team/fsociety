@@ -30,7 +30,7 @@ class GitHubRepo(metaclass=ABCMeta):
     def clone(self):
         if os.path.exists(self.full_path):
             os.chdir(self.full_path)
-            os.system(f"git pull")
+            os.system("git pull")
             return self.full_path
         url = f"https://github.com/{self.path}"
         if config.getboolean("fsociety", "ssh_clone"):
@@ -89,7 +89,7 @@ class Gist(GitHubRepo):
     def clone(self):
         if os.path.exists(self.full_path):
             os.chdir(self.full_path)
-            os.system(f"git pull")
+            os.system("git pull")
             return self.full_path
         url = f"https://gist.github.com/{self.path}"
         if config.getboolean("fsociety", "ssh_clone"):

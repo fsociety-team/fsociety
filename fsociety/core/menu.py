@@ -1,6 +1,5 @@
 import os
 import shutil
-import traceback
 
 from colorama import Fore, Back, Style
 
@@ -12,6 +11,7 @@ BACK_COMMANDS = ["exit", "back", "return"]
 class CommandCompleter(object):
     def __init__(self, options):
         self.options = sorted(options)
+        self.matches = list()
 
     def complete(self, text, state):
         response = None
@@ -104,7 +104,6 @@ def tools_cli(name, tools):
     except Exception as e:
         print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
         print(str(e))
-        # traceback.print_exc()
         if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
             os.chdir(install_dir)
             shutil.rmtree(tool.full_path)

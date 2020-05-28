@@ -7,7 +7,7 @@ from fsociety.core.menu import confirm
 class photonRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="s0md3v/Photon",
-                         install={"pip": "requirements.txt"}, 
+                         install={"pip": "requirements.txt"},
                          description="Incredibly fast crawler designed for OSINT")
 
     def run(self):

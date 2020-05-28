@@ -2,7 +2,6 @@ import os
 
 from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
-from fsociety.core.usernames import get_usernames, add_username
 
 
 class cr3dov3rRepo(GitHubRepo):

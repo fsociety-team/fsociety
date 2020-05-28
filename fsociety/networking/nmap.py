@@ -44,7 +44,7 @@ class nmapRepo(GitHubRepo):
         host = input("\nEnter a host: ").strip()
         if not host:
             raise InvalidHost
-        if (host not in hosts):
+        if host not in hosts:
             add_host(host)
         longest_key = max([len(key) for key in premade_args.keys()]) + 2
         print("\nName".ljust(longest_key) + " | Args")

@@ -1,9 +1,7 @@
 import os
-from glob import glob
 
 from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline, confirm
-from fsociety.core.usernames import get_usernames, add_username
 
 
 class gitgraberRepo(GitHubRepo):

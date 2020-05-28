@@ -16,6 +16,10 @@ class changemeRepo(GitHubRepo):
         hosts = get_hosts()
         set_readline(hosts)
         user_host = input("\nEnter a host: ").strip()
+        if not user_host:
+            raise InvalidHost
+        if user_host not in hosts:
+            add_host(user_host)
         return os.system(f"python3 changeme.py {user_host}")
 
 

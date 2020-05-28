@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
 import argparse
 import platform
 
 import colorama
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 # Core
 from fsociety.core.menu import set_readline, format_menu_item, format_tools, module_name, prompt, clear_screen
@@ -90,7 +89,7 @@ def mainloop():
     print(Style.RESET_ALL)
     try:
         func = items[selected_command].cli
-        func()
+        return func()
     except Exception as e:
         print(str(e))
 

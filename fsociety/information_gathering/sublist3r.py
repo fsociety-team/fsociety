@@ -2,13 +2,12 @@ import os
 
 from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
-from fsociety.core.usernames import get_usernames, add_username
 
 
 class sublist3rRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="aboul3la/Sublist3r",
-                         install={"pip": "requirements.txt"}, 
+                         install={"pip": "requirements.txt"},
                          description="Fast subdomains enumeration tool for penetration testers")
 
     def run(self):
