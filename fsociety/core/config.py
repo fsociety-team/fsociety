@@ -37,7 +37,9 @@ def get_config():
             config.write(configfile)
     config.read(config_file)
     check_config(config)
-    config.set("fsociety", "version", __version__)
+    if not config.get("fsociety", "version") == __version__:
+        config.set("fsociety", "version", __version__)
+        write_config(config)
     return config
 
 
