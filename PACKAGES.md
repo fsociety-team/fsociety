@@ -6,6 +6,7 @@
 - [Sublist3r](https://github.com/aboul3la/Sublist3r)
 - [sherlock](https://github.com/sherlock-project/sherlock)
 - [S3Scanner](https://github.com/sa7mon/S3Scanner)
+- [gitGraber](https://github.com/hisxo/gitGraber)
 
 ## Networking
 
