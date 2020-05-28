@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed config
 - Cleaned up workflow
 - Added [Striker](https://github.com/s0md3v/Striker)
+- Added [HydraRecon](https://github.com/aufzayed/HydraRecon)
 
 ## [3.1.5] - 05-28-2020
 

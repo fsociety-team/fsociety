@@ -8,6 +8,7 @@
 - [sherlock](https://github.com/sherlock-project/sherlock)
 - [S3Scanner](https://github.com/sa7mon/S3Scanner)
 - [gitGraber](https://github.com/hisxo/gitGraber)
+- [HydraRecon](https://github.com/aufzayed/HydraRecon)
 
 ## Networking
 
