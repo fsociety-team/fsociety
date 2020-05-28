@@ -3,6 +3,7 @@
 ## Information Gathering
 
 - [sqlmap](https://github.com/sqlmapproject/sqlmap)
+- [Striker](https://github.com/s0md3v/Striker)
 - [Sublist3r](https://github.com/aboul3la/Sublist3r)
 - [sherlock](https://github.com/sherlock-project/sherlock)
 - [S3Scanner](https://github.com/sa7mon/S3Scanner)
