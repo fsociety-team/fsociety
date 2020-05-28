@@ -2,7 +2,6 @@ import os
 from shutil import which
 
 from fsociety.core.repo import GitHubRepo
-from fsociety.core.menu import confirm
 
 
 class bettercapRepo(GitHubRepo):
@@ -22,7 +21,7 @@ class bettercapRepo(GitHubRepo):
 
     def run(self):
         print("Please note that bettercap must be run with sudo")
-        return os.system(f"sudo bettercap")
+        return os.system("sudo bettercap")
 
 
 bettercap = bettercapRepo()

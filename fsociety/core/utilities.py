@@ -1,12 +1,12 @@
 import os
-from requests import get
 from base64 import b64decode
 from socket import gethostbyname
 from webbrowser import open_new_tab
+from requests import get
 
 from colorama import Fore
 
-from .menu import input_wait, set_readline, tools_cli
+from .menu import set_readline, tools_cli
 from .config import install_dir, github_path
 from .hosts import get_hosts, add_host
 from .utility import Utility

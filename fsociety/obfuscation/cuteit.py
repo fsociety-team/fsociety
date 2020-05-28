@@ -1,7 +1,6 @@
 import os
 
 from fsociety.core.repo import GitHubRepo
-from fsociety.core.menu import confirm
 
 
 class cuteitRepo(GitHubRepo):

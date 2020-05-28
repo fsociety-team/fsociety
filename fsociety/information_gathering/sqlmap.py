@@ -13,8 +13,8 @@ class sqlmapRepo(GitHubRepo):
     def run(self):
         os.chdir(self.full_path)
         user_url = input("\nEnter a url to scan: ").strip()
-        args = str()
-        if confirm("Do you want to add any extra args?"):
+        user_args = str()
+        if confirm("\nDo you want to add any extra args?"):
             os.system(f"python3 sqlmap.py --help")
             user_args = input("\nEnter any extra args: ").strip()
         return os.system(f"python3 sqlmap.py -u {user_url} {user_args}")
