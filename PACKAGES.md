@@ -15,6 +15,7 @@
 ## Web Apps
 
 - [XSStrike](https://github.com/s0md3v/XSStrike)
+- [Photon](https://github.com/s0md3v/Photon)
 
 ## Passwords
 
