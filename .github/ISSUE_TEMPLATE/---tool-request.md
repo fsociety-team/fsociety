@@ -11,4 +11,4 @@ assignees: ''
 https://github.com/really_cool_project
 
 **Why?**
-Why should we add this tool?
+_Why should we add this tool?_
