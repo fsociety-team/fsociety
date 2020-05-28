@@ -26,11 +26,17 @@ premade_args = {
 class nmapRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="nmap/nmap",
-                         install="./configure && make && make install",
+                         install={
+                             "linux": "sudo apt-get install nmap",
+                             "brew": "install nmap"
+                         },
                          description="the Network Mapper")
 
     def installed(self):
         return which("nmap")
+
+    def install(self):
+        super().install(clone=False)
 
     def run(self):
         hosts = get_hosts()

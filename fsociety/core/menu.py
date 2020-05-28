@@ -57,7 +57,14 @@ def format_menu_item(item):
 
 
 def format_tools(tools):
-    return "".join([f"\n\t{str(tool)}" for tool in tools])
+    etc = False
+    if len(tools) > 5:
+        tools = tools[:5]
+        etc = True
+    res = "".join([f"\n\t{str(tool)}" for tool in tools])
+    if etc:
+        res += "\n\t..."
+    return res
 
 
 def module_name(module):

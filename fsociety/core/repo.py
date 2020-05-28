@@ -1,5 +1,6 @@
 import os
 from abc import ABCMeta, abstractmethod
+from shutil import which
 
 from fsociety.core.config import install_dir, get_config
 from fsociety.core.menu import confirm
@@ -39,11 +40,12 @@ class GitHubRepo(metaclass=ABCMeta):
             raise CloneError(f"{self.full_path} not found")
         return self.full_path
 
-    def install(self, no_confirm=False):
+    def install(self, no_confirm=False, clone=True):
         if no_confirm or not confirm(f"\nDo you want to install https://github.com/{self.path}?"):
             print("Cancelled")
             return
-        self.clone()
+        if clone:
+            self.clone()
         if self.install_options:
             os.chdir(self.full_path)
             install = self.install_options
@@ -63,8 +65,10 @@ class GitHubRepo(metaclass=ABCMeta):
 
                     if not confirm(message):
                         raise InstallError
-
-                elif "linux" in install.keys() or "windows" in install.keys() or "macos" in install.keys():
+                elif config.get("fsociety", "os") == "macos" and "brew" in install.keys() and which("brew"):
+                    brew_opts = install.get("brew")
+                    command = f"brew {brew_opts}"
+                elif "linux" in install.keys() or "windows" in install.keys() or "macs" in install.keys():
                     command = install.get(config.get(
                         "fsociety", "os"), install.get("linux"))
             else:
