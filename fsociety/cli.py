@@ -16,6 +16,7 @@ import fsociety.information_gathering
 import fsociety.passwords
 import fsociety.web_apps
 import fsociety.obfuscation
+import fsociety.networking
 
 # Config
 config = get_config()
@@ -40,8 +41,8 @@ MENU_TITLE = Fore.RED + """
                                /____/   
 
 """ + Fore.RESET
-MENU_ITEMS = [fsociety.information_gathering,
-              fsociety.passwords, fsociety.web_apps, fsociety.obfuscation, fsociety.core.utilities]
+MENU_ITEMS = [fsociety.information_gathering, fsociety.networking, fsociety.web_apps,
+              fsociety.passwords, fsociety.obfuscation, fsociety.core.utilities]
 BUILTIN_FUNCTIONS = {
     "exit": lambda: exec('raise KeyboardInterrupt'),
 }

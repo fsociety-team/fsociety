@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.1.5] - 05-28-2020
+
+- Added Networking category
+- Added [bettercap](https://github.com/bettercap/bettercap)
+- Moved [nmap](https://github.com/nmap/nmap) to Networking
+
 ## [3.1.4] - 05-28-2020
 
 - Added `--suggest` argument
@@ -85,7 +91,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.4...HEAD
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.5...HEAD
+[3.1.5]: https://github.com/fsociety-team/fsociety/compare/v3.1.4...v3.1.5
 [3.1.4]: https://github.com/fsociety-team/fsociety/compare/v3.1.3...v3.1.4
 [3.1.3]: https://github.com/fsociety-team/fsociety/compare/v3.1.2...v3.1.3
 [3.1.2]: https://github.com/fsociety-team/fsociety/compare/v3.1.1...v3.1.2
