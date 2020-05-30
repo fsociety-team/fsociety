@@ -3,7 +3,7 @@ import os
 from fsociety.core.repo import GitHubRepo
 
 
-class cuppRepo(GitHubRepo):
+class CuppRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="Mebus/cupp",
                          install=None,
@@ -14,4 +14,4 @@ class cuppRepo(GitHubRepo):
         return os.system("python3 cupp.py -i")
 
 
-cupp = cuppRepo()
+cupp = CuppRepo()

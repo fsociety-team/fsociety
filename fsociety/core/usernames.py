@@ -1,10 +1,10 @@
 import os.path
 
-from fsociety.core.config import install_dir, get_config
+from fsociety.core.config import INSTALL_DIR, get_config
 
 config = get_config()
 
-full_path = os.path.join(install_dir, config.get("fsociety", "usernames_file"))
+full_path = os.path.join(INSTALL_DIR, config.get("fsociety", "usernames_file"))
 
 
 def get_usernames():

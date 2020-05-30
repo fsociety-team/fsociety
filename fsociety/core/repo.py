@@ -2,7 +2,7 @@ import os
 from abc import ABCMeta, abstractmethod
 from shutil import which
 
-from fsociety.core.config import install_dir, get_config
+from fsociety.core.config import INSTALL_DIR, get_config
 from fsociety.core.menu import confirm
 
 config = get_config()
@@ -17,11 +17,14 @@ class CloneError(Exception):
 
 
 class GitHubRepo(metaclass=ABCMeta):
-    def __init__(self, path="fsociety-team/fsociety", install="pip install -e .", description=None):
+    def __init__(self,
+                 path="fsociety-team/fsociety",
+                 install="pip install -e .",
+                 description=None):
         self.path = path
         self.name = self.path.split("/")[-1]
         self.install_options = install
-        self.full_path = os.path.join(install_dir, self.name)
+        self.full_path = os.path.join(INSTALL_DIR, self.name)
         self.description = description
 
     def __str__(self):
@@ -41,7 +44,8 @@ class GitHubRepo(metaclass=ABCMeta):
         return self.full_path
 
     def install(self, no_confirm=False, clone=True):
-        if no_confirm or not confirm(f"\nDo you want to install https://github.com/{self.path}?"):
+        if no_confirm or not confirm(
+                f"\nDo you want to install https://github.com/{self.path}?"):
             print("Cancelled")
             return
         if clone:
@@ -65,12 +69,15 @@ class GitHubRepo(metaclass=ABCMeta):
 
                     if not confirm(message):
                         raise InstallError
-                elif config.get("fsociety", "os") == "macos" and "brew" in install.keys() and which("brew"):
+                elif config.get("fsociety",
+                                "os") == "macos" and "brew" in install.keys(
+                                ) and which("brew"):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
-                elif "linux" in install.keys() or "windows" in install.keys() or "macs" in install.keys():
-                    command = install.get(config.get(
-                        "fsociety", "os"), install.get("linux"))
+                elif "linux" in install.keys() or "windows" in install.keys(
+                ) or "macs" in install.keys():
+                    command = install.get(config.get("fsociety", "os"),
+                                          install.get("linux"))
             else:
                 command = install
 
@@ -98,3 +105,7 @@ class Gist(GitHubRepo):
         if not os.path.exists(self.full_path):
             raise CloneError(f"{self.full_path} not found")
         return self.full_path
+
+    @abstractmethod
+    def run(self):
+        pass

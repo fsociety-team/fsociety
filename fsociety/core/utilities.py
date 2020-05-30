@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,line-too-long
 import os
 from base64 import b64decode
 from socket import gethostbyname
@@ -7,7 +8,7 @@ from requests import get
 from colorama import Fore
 
 from .menu import set_readline, tools_cli
-from .config import install_dir, github_path
+from .config import INSTALL_DIR, GITHUB_PATH
 from .hosts import get_hosts, add_host
 from .utility import Utility
 
@@ -43,7 +44,7 @@ class spawn_shell(Utility):
     def run(self):
         print("Enter `exit` to return to fsociety")
         shell = os.getenv("SHELL", "/bin/bash")
-        os.chdir(install_dir)
+        os.chdir(INSTALL_DIR)
         os.system(shell)
 
 
@@ -53,7 +54,8 @@ class suggest_tool(Utility):
 
     def run(self):
         open_new_tab(
-            f"https://github.com/{github_path}/issues/new?assignees=&labels=tool&template=---tool-request.md&title=")
+            f"https://github.com/{GITHUB_PATH}/issues/new?assignees=&labels=tool&template=---tool-request.md&title="
+        )
 
 
 class print_contributors(Utility):
@@ -68,16 +70,20 @@ class print_contributors(Utility):
     8888Y"  888888    YP    8bodP'
     """)
         response = get(
-            f"https://api.github.com/repos/{github_path}/contributors")
+            f"https://api.github.com/repos/{GITHUB_PATH}/contributors")
         contributors = response.json()
-        for contributor in sorted(contributors, key=lambda c: c['contributions'], reverse=True):
+        for contributor in sorted(contributors,
+                                  key=lambda c: c['contributions'],
+                                  reverse=True):
             username = contributor.get("login")
             print(f" {username} ".center(30, "-"))
         print(Fore.RESET)
 
 
-__tools__ = [tool() for tool in [host2ip, base64_decode,
-                                 spawn_shell, suggest_tool, print_contributors]]
+__tools__ = [
+    tool() for tool in
+    [host2ip, base64_decode, spawn_shell, suggest_tool, print_contributors]
+]
 
 
 def cli():

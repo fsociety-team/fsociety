@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 import io
 import os
 import sys
@@ -19,10 +18,7 @@ REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
 # Required Packages
-REQUIRED = [
-    'requests',
-    'colorama'
-]
+REQUIRED = ['requests', 'colorama']
 
 # Optional Packages
 EXTRAS = {

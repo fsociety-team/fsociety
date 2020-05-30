@@ -5,7 +5,7 @@ from fsociety.core.menu import set_readline
 from fsociety.core.hosts import get_hosts, add_host, InvalidHost
 
 
-class changemeRepo(GitHubRepo):
+class ChangemeRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="ztgrace/changeme",
                          install={"pip": "requirements.txt"},
@@ -23,4 +23,4 @@ class changemeRepo(GitHubRepo):
         return os.system(f"python3 changeme.py {user_host}")
 
 
-changeme = changemeRepo()
+changeme = ChangemeRepo()

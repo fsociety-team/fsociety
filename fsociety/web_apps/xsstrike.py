@@ -4,10 +4,10 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import confirm
 
 
-class xsstrikeRepo(GitHubRepo):
+class XsstrikeRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="s0md3v/XSStrike",
-                         install={"pip": "requirements.txt"}, 
+                         install={"pip": "requirements.txt"},
                          description="Advanced XSS Detection Suite")
 
     def run(self):
@@ -22,4 +22,4 @@ class xsstrikeRepo(GitHubRepo):
         return os.system(f"python3 xsstrike.py --url {user_url} {args_str}")
 
 
-xsstrike = xsstrikeRepo()
+xsstrike = XsstrikeRepo()

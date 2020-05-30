@@ -1,14 +1,15 @@
+# pylint: disable=unused-import,broad-except
 import os
 import shutil
 
 from colorama import Fore, Back, Style
 
-from fsociety.core.config import install_dir
+from fsociety.core.config import INSTALL_DIR
 
 BACK_COMMANDS = ["exit", "back", "return"]
 
 
-class CommandCompleter(object):
+class CommandCompleter():
     def __init__(self, options):
         self.options = sorted(options)
         self.matches = list()
@@ -17,9 +18,9 @@ class CommandCompleter(object):
         response = None
         if state == 0:
             if text:
-                self.matches = [s
-                                for s in self.options
-                                if s and s.startswith(text)]
+                self.matches = [
+                    s for s in self.options if s and s.startswith(text)
+                ]
             else:
                 self.matches = self.options[:]
         try:
@@ -58,8 +59,8 @@ def format_menu_item(item):
 
 def format_tools(tools):
     etc = False
-    if len(tools) > 5:
-        tools = tools[:5]
+    if len(tools) > 3:
+        tools = tools[:3]
         etc = True
     res = "".join([f"\n\t{str(tool)}" for tool in tools])
     if etc:
@@ -101,11 +102,11 @@ def tools_cli(name, tools):
             raise Exception
     except KeyboardInterrupt:
         return
-    except Exception as e:
+    except Exception as error:
         print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
-        print(str(e))
+        print(str(error))
         if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
-            os.chdir(install_dir)
+            os.chdir(INSTALL_DIR)
             shutil.rmtree(tool.full_path)
             tool.install()
     input_wait()

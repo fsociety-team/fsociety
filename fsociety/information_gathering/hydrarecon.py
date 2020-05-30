@@ -4,7 +4,7 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline, confirm
 
 
-class hydrareconRepo(GitHubRepo):
+class HydrareconRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="aufzayed/HydraRecon",
                          install={"pip": "requirements.txt"},
@@ -20,4 +20,4 @@ class hydrareconRepo(GitHubRepo):
         return os.system(f"python3 hydrarecon.py {arg} -d {user_domain}")
 
 
-hydrarecon = hydrareconRepo()
+hydrarecon = HydrareconRepo()

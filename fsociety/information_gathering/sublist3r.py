@@ -4,11 +4,13 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
 
 
-class sublist3rRepo(GitHubRepo):
+class Sublist3rRepo(GitHubRepo):
     def __init__(self):
-        super().__init__(path="aboul3la/Sublist3r",
-                         install={"pip": "requirements.txt"},
-                         description="Fast subdomains enumeration tool for penetration testers")
+        super().__init__(
+            path="aboul3la/Sublist3r",
+            install={"pip": "requirements.txt"},
+            description=
+            "Fast subdomains enumeration tool for penetration testers")
 
     def run(self):
         os.chdir(self.full_path)
@@ -17,4 +19,4 @@ class sublist3rRepo(GitHubRepo):
         return os.system(f"python3 sublist3r.py -v -d {user_domain}")
 
 
-sublist3r = sublist3rRepo()
+sublist3r = Sublist3rRepo()

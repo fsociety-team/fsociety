@@ -4,11 +4,12 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import confirm
 
 
-class photonRepo(GitHubRepo):
+class PhotonRepo(GitHubRepo):
     def __init__(self):
-        super().__init__(path="s0md3v/Photon",
-                         install={"pip": "requirements.txt"},
-                         description="Incredibly fast crawler designed for OSINT")
+        super().__init__(
+            path="s0md3v/Photon",
+            install={"pip": "requirements.txt"},
+            description="Incredibly fast crawler designed for OSINT")
 
     def run(self):
         os.chdir(self.full_path)
@@ -22,4 +23,4 @@ class photonRepo(GitHubRepo):
         return os.system(f"python3 photon.py --url {user_url} {args_str}")
 
 
-photon = photonRepo()
+photon = PhotonRepo()

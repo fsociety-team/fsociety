@@ -4,7 +4,7 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
 
 
-class strikerRepo(GitHubRepo):
+class StrikerRepo(GitHubRepo):
     def __init__(self):
         super().__init__(path="s0md3v/Striker",
                          install={"pip": "requirements.txt"},
@@ -17,4 +17,4 @@ class strikerRepo(GitHubRepo):
         return os.system(f"python3 striker.py {user_domain}")
 
 
-striker = strikerRepo()
+striker = StrikerRepo()

@@ -3,11 +3,13 @@ import os
 from fsociety.core.repo import GitHubRepo
 
 
-class cuteitRepo(GitHubRepo):
+class CuteitRepo(GitHubRepo):
     def __init__(self):
-        super().__init__(path="D4Vinci/Cuteit", 
-                         install=None,
-                         description="IP obfuscator made to make a malicious ip a bit cuter")
+        super().__init__(
+            path="D4Vinci/Cuteit",
+            install=None,
+            description="IP obfuscator made to make a malicious ip a bit cuter"
+        )
 
     def run(self):
         os.chdir(self.full_path)
@@ -15,4 +17,4 @@ class cuteitRepo(GitHubRepo):
         return os.system(f"python3 Cuteit.py {user_ip}")
 
 
-cuteit = cuteitRepo()
+cuteit = CuteitRepo()
