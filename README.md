@@ -4,7 +4,11 @@
   </a>
 </div>
 
-# fsociety [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=flat-square)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=flat-square)](https://pypi.org/project/fsociety/) [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/r/fsocietyteam/fsociety) [![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE) [![Twitter Follow](https://img.shields.io/twitter/follow/fsociety_team?color=blue&label=Follow%20Us&logo=twitter&style=flat-square)](https://twitter.com/fsociety_team)
+# fsociety
+
+[![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=for-the-badge)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=for-the-badge)](https://pypi.org/project/fsociety/) ![GitHub repo size](https://img.shields.io/github/languages/code-size/fsociety-team/fsociety?style=for-the-badge) [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=for-the-badge)](https://hub.docker.com/r/fsocietyteam/fsociety)
+
+[![Packages](https://img.shields.io/badge/PACKAGES.md-lightblue?style=for-the-badge)](https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md) [![Changelog](https://img.shields.io/badge/CHANGELOG.md-lightblue?style=for-the-badge)](https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md)
 
 A Penetration Testing Framework
 
@@ -53,6 +57,6 @@ docker run -it fsocietyteam/fsociety fsociety
 
 ## License
 
-[MIT Licence](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
+[![License](https://img.shields.io/pypi/l/fsociety?style=for-the-badge)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
 
-[![forthebadge](https://forthebadge.com/images/badges/fuck-it-ship-it.svg)](https://forthebadge.com)
+[![Twitter Follow](https://img.shields.io/badge/fuck%20it-ship%20it-blue?style=for-the-badge)](https://twitter.com/fsociety_team) [![Twitter Follow](https://img.shields.io/twitter/follow/fsociety_team?color=blue&style=for-the-badge)](https://twitter.com/fsociety_team)
