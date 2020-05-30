@@ -27,4 +27,4 @@ jobs:
       - name: GitHub Action for pylint
         uses: cclauss/GitHub-Action-for-pylint@0.7.0
         with:
-          args: "pip install .[dev] ; pylint **/*.py"
+          args: "pip install .;pip install .[dev]; pylint **/*.py"
