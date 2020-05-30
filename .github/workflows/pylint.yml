@@ -6,9 +6,11 @@ name: Pylint
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    paths:
+      - "*/**.py"
   pull_request:
-    branches: [ master ]
+    paths:
+      - "*/**.py"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
