@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.1.9] - 05-30-2020
+
+- Implement Pylint
+- Refactor
+- Update Docs
+- Random Banner
+
 ## [3.1.8] - 05-28-2020
 
 - Fixed config
@@ -100,7 +107,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.8...HEAD
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.9...HEAD
+[3.1.9]: https://github.com/fsociety-team/fsociety/compare/v3.1.8...v3.1.9
 [3.1.8]: https://github.com/fsociety-team/fsociety/compare/v3.1.5...v3.1.8
 [3.1.5]: https://github.com/fsociety-team/fsociety/compare/v3.1.4...v3.1.5
 [3.1.4]: https://github.com/fsociety-team/fsociety/compare/v3.1.3...v3.1.4
