@@ -1,12 +1,8 @@
-# fsociety [![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=for-the-badge)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=for-the-badge)](https://pypi.org/project/fsociety/) ![GitHub repo size](https://img.shields.io/github/languages/code-size/fsociety-team/fsociety?style=for-the-badge) [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=for-the-badge)](https://hub.docker.com/r/fsocietyteam/fsociety)
+![fsociety](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png)
 
-<div align="center">
-  <a href="https://fsociety.dev/">
-    <img width="467" height="78" src="https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png" alt="fsociety">
-  </a>
-  <p>A Penetration Testing Framework</p>
-  <img src="https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png" alt="cli">
-</div>
+[![Python Version](https://img.shields.io/pypi/pyversions/fsociety?color=orange&style=for-the-badge)](https://www.python.org/downloads/) [![PyPi](https://img.shields.io/pypi/v/fsociety?style=for-the-badge)](https://pypi.org/project/fsociety/) ![GitHub repo size](https://img.shields.io/github/languages/code-size/fsociety-team/fsociety?style=for-the-badge) [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=for-the-badge)](https://hub.docker.com/r/fsocietyteam/fsociety)
+
+![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png)
 
 [![Packages](https://img.shields.io/badge/PACKAGES.md-red?style=for-the-badge)](https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md) [![Changelog](https://img.shields.io/badge/CHANGELOG.md-red?style=for-the-badge)](https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md)
 
