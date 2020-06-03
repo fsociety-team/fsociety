@@ -4,7 +4,7 @@ from fsociety.core.menu import tools_cli
 from .nmap import nmap
 from .bettercap import bettercap
 
-__tools__ = [str(tool) for tool in [nmap, bettercap]]
+__tools__ = [nmap, bettercap]
 
 
 def cli():
