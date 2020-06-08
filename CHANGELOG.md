@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.2.1] - 06-02-2020
+
+- Update Docs
+- Misc fixes
+
 ## [3.1.9] - 05-30-2020
 
 - Implement Pylint
