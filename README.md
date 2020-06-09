@@ -4,7 +4,7 @@ A Modular Penetration Testing Framework
 
 [![Packages](https://img.shields.io/badge/PACKAGES.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md) [![Changelog](https://img.shields.io/badge/CHANGELOG.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md)
 
-![fsociety](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png)
+[![fsociety](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png)](https://github.com/fsociety-team/fsociety)
 
 ![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png)
 

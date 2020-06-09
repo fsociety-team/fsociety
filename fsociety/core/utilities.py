@@ -3,6 +3,8 @@ import os
 from base64 import b64decode
 from socket import gethostbyname
 from webbrowser import open_new_tab
+from abc import ABCMeta, abstractmethod
+
 from requests import get
 
 from fsociety.console import console
@@ -10,7 +12,18 @@ from fsociety.console import console
 from .menu import set_readline, tools_cli
 from .config import INSTALL_DIR, GITHUB_PATH
 from .hosts import get_hosts, add_host
-from .utility import Utility
+
+
+class Utility(metaclass=ABCMeta):
+    def __init__(self, description=None):
+        self.description = description
+
+    def __str__(self):
+        return self.__class__.__name__
+
+    @abstractmethod
+    def run(self):
+        pass
 
 
 class host2ip(Utility):
