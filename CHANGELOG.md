@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.2.2] - 06-028-2020
+
+- Update Docs
+- Misc fixes
+- Replaced `colorama` with `rich`
+- Added `GitPython` package
+
 ## [3.2.1] - 06-02-2020
 
 - Update Docs
@@ -112,7 +119,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.1.9...HEAD
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.2.2...HEAD
+[3.2.2]: https://github.com/fsociety-team/fsociety/compare/v3.2.1...v3.2.2
+[3.2.1]: https://github.com/fsociety-team/fsociety/compare/v3.1.9...v3.2.1
 [3.1.9]: https://github.com/fsociety-team/fsociety/compare/v3.1.8...v3.1.9
 [3.1.8]: https://github.com/fsociety-team/fsociety/compare/v3.1.5...v3.1.8
 [3.1.5]: https://github.com/fsociety-team/fsociety/compare/v3.1.4...v3.1.5
