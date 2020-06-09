@@ -10,7 +10,7 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'fsociety'
-DESCRIPTION = 'A Penetration Testing Framework'
+DESCRIPTION = 'A Modular Penetration Testing Framework'
 URL = 'https://github.com/fsociety-team/fsociety'
 EMAIL = 'contact@fsociety.dev'
 AUTHOR = 'fsociety-team'
