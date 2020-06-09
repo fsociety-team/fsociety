@@ -18,7 +18,7 @@ REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
 # Required Packages
-REQUIRED = ['requests', 'colorama']
+REQUIRED = ['gitpython', 'rich', 'requests']
 
 # Optional Packages
 EXTRAS = {

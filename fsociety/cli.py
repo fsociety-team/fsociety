@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# pylint: disable=exec-used,broad-except,inconsistent-return-statements,invalid-name
+# pylint: disable=exec-used,broad-except,inconsistent-return-statements,invalid-name,trailing-whitespace
 
 import argparse
 import platform
 from random import choice
 
-import colorama
-from colorama import Fore, Style
+from rich.text import Text
+from rich.columns import Columns
 
 # Core
-from fsociety.core.menu import (set_readline, format_menu_item, format_tools,
+from fsociety.console import console
+from fsociety.core.menu import (set_readline, format_tools,
                                 module_name, prompt, clear_screen)
 from fsociety.core.config import get_config, write_config, CONFIG_FILE
 import fsociety.core.utilities
@@ -24,7 +25,7 @@ import fsociety.networking
 config = get_config()
 
 # Menu
-TERMS = Fore.YELLOW + """
+TERMS = """
 I shall not use fsociety to:
 (i) upload or otherwise transmit, display or distribute any
 content that infringes any trademark, trade secret, copyright
@@ -33,24 +34,27 @@ person; (ii) upload or otherwise transmit any material that contains
 software viruses or any other computer code, files or programs
 designed to interrupt, destroy or limit the functionality of any
 computer software or hardware or telecommunications equipment;
-""" + Fore.RESET
-BANNER1 = Fore.RED + """
+"""
+BANNER1 = (
+    """
     ____                _      __       
    / __/________  _____(_)__  / /___  __
   / /_/ ___/ __ \/ ___/ / _ \/ __/ / / /
  / __(__  ) /_/ / /__/ /  __/ /_/ /_/ / 
 /_/ /____/\____/\___/_/\___/\__/\__, /  
                                /____/   
-"""
-BANNER2 = Fore.YELLOW + """
+""")
+BANNER2 = (
+    """
   __                _      _         
  / _|___  ___   ___(_) ___| |_ _   _ 
 | |_/ __|/ _ \ / __| |/ _ \ __| | | |
 |  _\__ \ (_) | (__| |  __/ |_| |_| |
 |_| |___/\___/ \___|_|\___|\__|\__, |
                                |___/ 
-"""
-BANNER3 = Fore.GREEN + """
+""")
+BANNER3 = (
+    """
  .-.                     .      
  |                o     _|_     
 -|-.--. .-.  .-.  .  .-. |  .  .
@@ -58,15 +62,16 @@ BANNER3 = Fore.GREEN + """
  ' `--' `-'  `-'-' `-`--'`-'`--|
                                ;
                             `-' 
-"""
-BANNER4 = Fore.MAGENTA + """
+""")
+BANNER4 = (
+    """
  ,__                                 .           
  /  `   ____   __.    ___  `   ___  _/_   ,    . 
  |__   (     .'   \ .'   ` | .'   `  |    |    ` 
  |     `--.  |    | |      | |----'  |    |    | 
  |    \___.'  `._.'  `._.' / `.___,  \__/  `---|.
  /                                         \___/ 
-"""
+""")
 BANNERS = [BANNER1, BANNER2, BANNER3, BANNER4]
 MENU_ITEMS = [
     fsociety.information_gathering, fsociety.networking, fsociety.web_apps,
@@ -78,21 +83,28 @@ BUILTIN_FUNCTIONS = {
 items = dict()
 
 
-def menuitems():
-    items_str = str()
+def print_menu_items():
+    cols = list()
     for value in MENU_ITEMS:
         name = module_name(value)
         tools = format_tools(value.__tools__)
-        items_str += f"{format_menu_item(name)} {tools}\n\n"
+        tools_str = Text()
+        tools_str.append("\n")
+        tools_str.append(name, style="command")
+        tools_str.append(tools)
+        cols.append(tools_str)
+
+    console.print(Columns(cols, equal=True, expand=True))
+
     for key in BUILTIN_FUNCTIONS:
-        items_str += f"{format_menu_item(key)}\n\n"
-    return items_str
+        print()
+        console.print(key, style="command")
 
 
 def agreement():
     while not config.getboolean("fsociety", "agreement"):
         clear_screen()
-        print(TERMS)
+        console.print(TERMS, style="bold yellow")
         agree = input(
             "You must agree to our terms and conditions first (Y/n) ")
         if agree.lower()[0] == "y":
@@ -107,21 +119,21 @@ commands = list(items.keys()) + list(BUILTIN_FUNCTIONS.keys())
 
 def mainloop():
     agreement()
-    print(choice(BANNERS) + Fore.RESET)
-    print(menuitems())
+    console.print(choice(BANNERS), style="red", highlight=False)
+    print_menu_items()
     selected_command = input(prompt()).strip()
     if not selected_command or (not selected_command in commands):
-        print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
+        console.print("Invalid Command", style="bold yellow")
         return
     if selected_command in BUILTIN_FUNCTIONS.keys():
         func = BUILTIN_FUNCTIONS.get(selected_command)
         return func()
-    print(Style.RESET_ALL)
     try:
         func = items[selected_command].cli
         return func()
     except Exception as error:
-        print(str(error))
+        console.print(str(error))
+        console.print_exception()
     return
 
 
@@ -139,19 +151,18 @@ def info():
         data["Windows"] = platform.win32_ver()[0]
 
     for key, value in data.items():
-        print(f"# {key}")
-        print(value)
-        print()
+        console.print(f"# {key}")
+        console.print(value, end="\n\n")
 
 
 def interactive():
-    colorama.init()
+
     try:
         while True:
             set_readline(commands)
             mainloop()
     except KeyboardInterrupt:
-        print("\nExitting...")
+        console.print("\nExitting...")
         write_config(config)
         exit(0)
 
@@ -167,8 +178,6 @@ def main():
                         '--suggest',
                         action='store_true',
                         help='suggest a tool')
-    # parser.add_argument('-w', '--web', action='store_true', help='start web ui')
-    # parser.add_argument('-t', '--tool', help='run tool')
 
     args = parser.parse_args()
 
@@ -176,10 +185,6 @@ def main():
         info()
     elif args.suggest:
         fsociety.core.utilities.suggest_tool()
-    # elif args.tool:
-    #     print("TODO: Run tool by name")
-    # elif args.web:
-    #     print("TODO: Webserver Here")
     else:
         interactive()
 

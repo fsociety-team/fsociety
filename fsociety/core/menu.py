@@ -1,12 +1,16 @@
-# pylint: disable=unused-import,broad-except
+# pylint: disable=unused-import,broad-except,inconsistent-return-statements
 import os
 import shutil
 
-from colorama import Fore, Back, Style
+from rich.text import Text
+from rich.table import Table
+from rich.style import Style
+from rich import box
 
+from fsociety.console import console
 from fsociety.core.config import INSTALL_DIR
 
-BACK_COMMANDS = ["exit", "back", "return"]
+BACK_COMMANDS = ["back", "return"]
 
 
 class CommandCompleter():
@@ -50,21 +54,15 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def format_menu_item(item):
-    string = str(item)
-    if hasattr(item, "description") and item.description:
-        string += f" - {item.description}"
-    return f"{Back.WHITE}{Fore.BLACK}{string}{Style.RESET_ALL}"
-
-
 def format_tools(tools):
+    cutoff = 5
     etc = False
-    if len(tools) > 3:
-        tools = tools[:3]
+    if len(tools) > cutoff:
+        tools = tools[:cutoff]
         etc = True
-    res = "".join([f"\n\t{str(tool)}" for tool in tools])
+    res = "".join([f"\n{str(tool)}" for tool in tools])
     if etc:
-        res += "\n\t..."
+        res += "\n..."
     return res
 
 
@@ -73,43 +71,57 @@ def module_name(module):
 
 
 def prompt(path="", base_path="~"):
-    return f"{Fore.RED}fsociety {os.path.join(base_path, path, '')}#{Fore.WHITE} "
+    encoded_path = os.path.join(base_path, path, "")
+    return f"\nfsociety {encoded_path}# "
 
 
 def input_wait():
     input("\nPress [ENTER] to continue... ")
 
 
-def tools_cli(name, tools):
+def tools_cli(name, tools, links=True):
+    table = Table(box=box.HEAVY_HEAD)
+    table.add_column("Name", style="red", no_wrap=True)
+    table.add_column("Description", style="magenta")
+    if links:
+        table.add_column("Link", no_wrap=True)
+
     tools_dict = dict()
     for tool in tools:
         tools_dict[str(tool)] = tool
-        print(f"{format_menu_item(tool)}\n")
-    print(f"{format_menu_item(str('back'))}\n")
+        args = [str(tool), tool.description]
+        if links:
+            text_link = Text(f"{tool.path}")
+            text_link.stylize_all(
+                Style(link=f"https://github.com/{tool.path}"))
+            args.append(text_link)
+        table.add_row(*args)
+
+    console.print(table)
+    console.print("back", style="command")
     set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
     if not selected_tool in tools_dict.keys():
         if selected_tool in BACK_COMMANDS:
             return
-        print(f"{Fore.YELLOW}Invalid Command{Fore.RESET}")
-        return
+        console.print("Invalid Command", style="bold yellow")
+        return tools_cli(name, tools, links)
     tool = tools_dict.get(selected_tool)
     if hasattr(tool, "install") and not tool.installed():
         tool.install()
     try:
         response = tool.run()
-        if response and response > 0:
-            raise Exception
+        if response and response > 0 and response != 256:
+            console.print(
+                f"{selected_tool} returned a non-zero exit code", style="bold red")
+            if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
+                os.chdir(INSTALL_DIR)
+                shutil.rmtree(tool.full_path)
+                tool.install()
     except KeyboardInterrupt:
         return
-    except Exception as error:
-        print(f"{Fore.RED + selected_tool} failed{Fore.RESET}")
-        print(str(error))
-        if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
-            os.chdir(INSTALL_DIR)
-            shutil.rmtree(tool.full_path)
-            tool.install()
-    input_wait()
+
+    return input_wait()
 
 
 def confirm(message="Do you want to?"):
