@@ -11,7 +11,14 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'fsociety'
 DESCRIPTION = 'A Modular Penetration Testing Framework'
-URL = 'https://github.com/fsociety-team/fsociety'
+URL = 'https://fsociety.dev/'
+PROJECT_URLS = {
+    'Packages': 'https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md',
+    'Changelog': 'https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md',
+    'Funding': 'https://github.com/sponsors/thehappydinoa',
+    'Tracker': 'https://github.com/fsociety-team/fsociety/issues',
+    'Source': 'https://github.com/fsociety-team/fsociety',
+},
 EMAIL = 'contact@fsociety.dev'
 AUTHOR = 'fsociety-team'
 REQUIRES_PYTHON = '>=3.7.0'
@@ -81,6 +88,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
+    project_urls=PROJECT_URLS,
     packages=find_packages(
         exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     entry_points={
