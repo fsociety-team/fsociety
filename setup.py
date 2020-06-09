@@ -4,7 +4,6 @@
 import io
 import os
 import sys
-from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
 
@@ -18,7 +17,7 @@ PROJECT_URLS = {
     'Funding': 'https://github.com/sponsors/thehappydinoa',
     'Tracker': 'https://github.com/fsociety-team/fsociety/issues',
     'Source': 'https://github.com/fsociety-team/fsociety',
-},
+}
 EMAIL = 'contact@fsociety.dev'
 AUTHOR = 'fsociety-team'
 REQUIRES_PYTHON = '>=3.7.0'
