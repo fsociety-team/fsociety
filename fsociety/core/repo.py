@@ -2,16 +2,35 @@
 import os
 from shutil import rmtree, which
 from abc import ABCMeta, abstractmethod
+from collections.abc import Iterable
 
 from git import Repo, RemoteProgress
-from rich.progress import (
-    BarColumn,
-    Progress,
-)
+from rich.progress import BarColumn, Progress
+from rich.table import Table
+
 from fsociety.core.config import INSTALL_DIR, get_config
 from fsociety.core.menu import confirm
+from fsociety.console import console
 
 config = get_config()
+
+
+def print_pip_deps(packages):
+    requirements = list()
+    if isinstance(packages, str) and os.path.exists(packages):
+        with open(packages, "r") as requirements_file:
+            for line in requirements_file:
+                if line.strip():
+                    requirements.append(line)
+    elif isinstance(packages, Iterable):
+        requirements = packages
+    else:
+        raise ValueError
+    table = Table("Packages", title="Pip Dependencies")
+    for req in requirements:
+        table.add_row(req)
+    console.print()
+    console.print(table)
 
 
 class InstallError(Exception):
@@ -114,17 +133,18 @@ class GitHubRepo(metaclass=ABCMeta):
                 if "pip" in install.keys():
                     packages = install.get("pip")
                     if isinstance(packages, list):
-                        message = f"Do you want to install the following packages? {packages}"
+                        message = "Do you want to install these packages?"
                         packages_str = " ".join(packages)
                         command = f"pip install {packages_str}"
                     elif isinstance(packages, str):
                         requirements_txt = os.path.join(
                             self.full_path, "requirements.txt")
-                        message = f"Do you want to install the packages in {requirements_txt}?"
+                        message = f"Do you want to install these packages from {requirements_txt}?"
                         command = f"pip install -r {requirements_txt}"
 
+                    print_pip_deps(packages)
                     if not confirm(message):
-                        raise InstallError
+                        raise InstallError("User Cancelled")
                 elif config.get("fsociety", "os") == "macos" and "brew" in install.keys() and which("brew"):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
