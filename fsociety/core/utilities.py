@@ -34,7 +34,7 @@ class host2ip(Utility):
         hosts = get_hosts()
         set_readline(hosts)
         user_host = input("\nEnter a host: ").strip()
-        if not user_host in hosts:
+        if user_host not in hosts:
             add_host(user_host)
         ip = gethostbyname(user_host)
         console.print(f"\n{user_host} has the IP of {ip}")
@@ -76,25 +76,28 @@ class print_contributors(Utility):
         super().__init__(description="Prints the usernames of our devs")
 
     def run(self):
-        console.print("""
-    8888b.  888888 Yb    dP .dP"Y8 
-    8I  Yb 88__    Yb  dP  `Ybo." 
-    8I  dY 88""     YbdP   o.`Y8b 
+        console.print(
+            """
+    8888b.  888888 Yb    dP .dP"Y8
+    8I  Yb 88__    Yb  dP  `Ybo."
+    8I  dY 88""     YbdP   o.`Y8b
     8888Y"  888888    YP    8bodP'
-    """, style="bold yellow", highlight=False)
-        response = get(
-            f"https://api.github.com/repos/{GITHUB_PATH}/contributors")
+    """,
+            style="bold yellow",
+            highlight=False,
+        )
+        response = get(f"https://api.github.com/repos/{GITHUB_PATH}/contributors")
         contributors = response.json()
-        for contributor in sorted(contributors,
-                                  key=lambda c: c['contributions'],
-                                  reverse=True):
+        for contributor in sorted(
+            contributors, key=lambda c: c["contributions"], reverse=True
+        ):
             username = contributor.get("login")
             console.print(f" {username} ".center(30, "-"))
 
 
 __tools__ = [
-    tool() for tool in
-    [host2ip, base64_decode, spawn_shell, suggest_tool, print_contributors]
+    tool()
+    for tool in [host2ip, base64_decode, spawn_shell, suggest_tool, print_contributors]
 ]
 
 

@@ -55,13 +55,13 @@ class GitProgress(RemoteProgress):
 
     def update(self, opcode, count, max_value, msg=None):
         opcode_strs = {
-            self.COUNTING: 'Counting',
-            self.COMPRESSING: 'Compressing',
-            self.WRITING: 'Writing',
-            self.RECEIVING: 'Receiving',
-            self.RESOLVING: 'Resolving',
-            self.FINDING_SOURCES: 'Finding sources',
-            self.CHECKING_OUT: 'Checking out',
+            self.COUNTING: "Counting",
+            self.COMPRESSING: "Compressing",
+            self.WRITING: "Writing",
+            self.RECEIVING: "Receiving",
+            self.RESOLVING: "Resolving",
+            self.FINDING_SOURCES: "Finding sources",
+            self.CHECKING_OUT: "Checking out",
         }
         stage, real_opcode = opcode & self.STAGE_MASK, opcode & self.OP_MASK
 
@@ -73,24 +73,26 @@ class GitProgress(RemoteProgress):
 
         if self.current_opcode != real_opcode:
             if self.task:
-                self.progress.update(self.task, total=1, completed=1, msg='')
+                self.progress.update(self.task, total=1, completed=1, msg="")
             self.current_opcode = real_opcode
             self.task = self.progress.add_task(
-                opcode_strs[real_opcode].ljust(15), msg='')
+                opcode_strs[real_opcode].ljust(15), msg=""
+            )
 
         if stage & self.BEGIN:
             self.progress.start()
         if stage & self.END:
             self.progress.stop()
-        self.progress.update(self.task, msg=msg or '',
-                             total=max_value, completed=count)
+        self.progress.update(self.task, msg=msg or "", total=max_value, completed=count)
 
 
 class GitHubRepo(metaclass=ABCMeta):
-    def __init__(self,
-                 path="fsociety-team/fsociety",
-                 install="pip install -e .",
-                 description=None):
+    def __init__(
+        self,
+        path="fsociety-team/fsociety",
+        install="pip install -e .",
+        description=None,
+    ):
         self.path = path
         self.name = self.path.split("/")[-1]
         self.install_options = install
@@ -117,7 +119,8 @@ class GitHubRepo(metaclass=ABCMeta):
 
     def install(self, no_confirm=False, clone=True):
         if no_confirm or not confirm(
-                f"\nDo you want to install https://github.com/{self.path}?"):
+            f"\nDo you want to install https://github.com/{self.path}?"
+        ):
             print("Cancelled")
             return
         if clone:
@@ -138,19 +141,29 @@ class GitHubRepo(metaclass=ABCMeta):
                         command = f"pip install {packages_str}"
                     elif isinstance(packages, str):
                         requirements_txt = os.path.join(
-                            self.full_path, "requirements.txt")
+                            self.full_path, "requirements.txt"
+                        )
                         message = f"Do you want to install these packages from {requirements_txt}?"
                         command = f"pip install -r {requirements_txt}"
 
                     print_pip_deps(packages)
                     if not confirm(message):
                         raise InstallError("User Cancelled")
-                elif config.get("fsociety", "os") == "macos" and "brew" in install.keys() and which("brew"):
+                elif (
+                    config.get("fsociety", "os") == "macos"
+                    and "brew" in install.keys()
+                    and which("brew")
+                ):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
-                elif "linux" in install.keys() or "windows" in install.keys() or "macs" in install.keys():
-                    command = install.get(config.get(
-                        "fsociety", "os"), install.get("linux"))
+                elif (
+                    "linux" in install.keys()
+                    or "windows" in install.keys()
+                    or "macs" in install.keys()
+                ):
+                    command = install.get(
+                        config.get("fsociety", "os"), install.get("linux")
+                    )
             else:
                 command = install
 

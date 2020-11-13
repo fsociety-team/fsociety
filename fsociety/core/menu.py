@@ -13,7 +13,7 @@ from fsociety.core.config import INSTALL_DIR
 BACK_COMMANDS = ["back", "return"]
 
 
-class CommandCompleter():
+class CommandCompleter:
     def __init__(self, options):
         self.options = sorted(options)
         self.matches = list()
@@ -22,9 +22,7 @@ class CommandCompleter():
         response = None
         if state == 0:
             if text:
-                self.matches = [
-                    s for s in self.options if s and s.startswith(text)
-                ]
+                self.matches = [s for s in self.options if s and s.startswith(text)]
             else:
                 self.matches = self.options[:]
         try:
@@ -41,6 +39,7 @@ def set_readline(items):
         pass
     else:
         import rlcompleter
+
         if isinstance(items, list):
             readline.set_completer(CommandCompleter(items).complete)
         elif isinstance(items, dict):
@@ -51,7 +50,7 @@ def set_readline(items):
 
 
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def format_tools(tools):
@@ -92,8 +91,7 @@ def tools_cli(name, tools, links=True):
         args = [str(tool), tool.description]
         if links:
             text_link = Text(f"{tool.path}")
-            text_link.stylize_all(
-                Style(link=f"https://github.com/{tool.path}"))
+            text_link.stylize(Style(link=f"https://github.com/{tool.path}"))
             args.append(text_link)
         table.add_row(*args)
 
@@ -101,7 +99,7 @@ def tools_cli(name, tools, links=True):
     console.print("back", style="command")
     set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
-    if not selected_tool in tools_dict.keys():
+    if selected_tool not in tools_dict.keys():
         if selected_tool in BACK_COMMANDS:
             return
         console.print("Invalid Command", style="bold yellow")
@@ -113,7 +111,8 @@ def tools_cli(name, tools, links=True):
         response = tool.run()
         if response and response > 0 and response != 256:
             console.print(
-                f"{selected_tool} returned a non-zero exit code", style="bold red")
+                f"{selected_tool} returned a non-zero exit code", style="bold red"
+            )
             if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
                 os.chdir(INSTALL_DIR)
                 shutil.rmtree(tool.full_path)

@@ -11,8 +11,13 @@ from rich.columns import Columns
 
 # Core
 from fsociety.console import console
-from fsociety.core.menu import (set_readline, format_tools,
-                                module_name, prompt, clear_screen)
+from fsociety.core.menu import (
+    set_readline,
+    format_tools,
+    module_name,
+    prompt,
+    clear_screen,
+)
 from fsociety.core.config import get_config, write_config, CONFIG_FILE
 import fsociety.core.utilities
 import fsociety.information_gathering
@@ -35,26 +40,23 @@ software viruses or any other computer code, files or programs
 designed to interrupt, destroy or limit the functionality of any
 computer software or hardware or telecommunications equipment;
 """
-BANNER1 = (
-    """
+BANNER1 = """
     ____                _      __       
    / __/________  _____(_)__  / /___  __
   / /_/ ___/ __ \/ ___/ / _ \/ __/ / / /
  / __(__  ) /_/ / /__/ /  __/ /_/ /_/ / 
 /_/ /____/\____/\___/_/\___/\__/\__, /  
                                /____/   
-""")
-BANNER2 = (
-    """
+"""
+BANNER2 = """
   __                _      _         
  / _|___  ___   ___(_) ___| |_ _   _ 
 | |_/ __|/ _ \ / __| |/ _ \ __| | | |
 |  _\__ \ (_) | (__| |  __/ |_| |_| |
 |_| |___/\___/ \___|_|\___|\__|\__, |
                                |___/ 
-""")
-BANNER3 = (
-    """
+"""
+BANNER3 = """
  .-.                     .      
  |                o     _|_     
 -|-.--. .-.  .-.  .  .-. |  .  .
@@ -62,23 +64,26 @@ BANNER3 = (
  ' `--' `-'  `-'-' `-`--'`-'`--|
                                ;
                             `-' 
-""")
-BANNER4 = (
-    """
+"""
+BANNER4 = """
  ,__                                 .           
  /  `   ____   __.    ___  `   ___  _/_   ,    . 
  |__   (     .'   \ .'   ` | .'   `  |    |    ` 
  |     `--.  |    | |      | |----'  |    |    | 
  |    \___.'  `._.'  `._.' / `.___,  \__/  `---|.
  /                                         \___/ 
-""")
+"""
 BANNERS = [BANNER1, BANNER2, BANNER3, BANNER4]
 MENU_ITEMS = [
-    fsociety.information_gathering, fsociety.networking, fsociety.web_apps,
-    fsociety.passwords, fsociety.obfuscation, fsociety.core.utilities
+    fsociety.information_gathering,
+    fsociety.networking,
+    fsociety.web_apps,
+    fsociety.passwords,
+    fsociety.obfuscation,
+    fsociety.core.utilities,
 ]
 BUILTIN_FUNCTIONS = {
-    "exit": lambda: exec('raise KeyboardInterrupt'),
+    "exit": lambda: exec("raise KeyboardInterrupt"),
 }
 items = dict()
 
@@ -105,10 +110,9 @@ def agreement():
     while not config.getboolean("fsociety", "agreement"):
         clear_screen()
         console.print(TERMS, style="bold yellow")
-        agree = input(
-            "You must agree to our terms and conditions first (Y/n) ")
+        agree = input("You must agree to our terms and conditions first (Y/n) ")
         if agree.lower()[0] == "y":
-            config.set('fsociety', 'agreement', 'true')
+            config.set("fsociety", "agreement", "true")
 
 
 for item in MENU_ITEMS:
@@ -122,7 +126,7 @@ def mainloop():
     console.print(choice(BANNERS), style="red", highlight=False)
     print_menu_items()
     selected_command = input(prompt()).strip()
-    if not selected_command or (not selected_command in commands):
+    if not selected_command or (selected_command not in commands):
         console.print("Invalid Command", style="bold yellow")
         return
     if selected_command in BUILTIN_FUNCTIONS.keys():
@@ -168,16 +172,9 @@ def interactive():
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description='A Penetration Testing Framework')
-    parser.add_argument('-i',
-                        '--info',
-                        action='store_true',
-                        help='gets fsociety info')
-    parser.add_argument('-s',
-                        '--suggest',
-                        action='store_true',
-                        help='suggest a tool')
+    parser = argparse.ArgumentParser(description="A Penetration Testing Framework")
+    parser.add_argument("-i", "--info", action="store_true", help="gets fsociety info")
+    parser.add_argument("-s", "--suggest", action="store_true", help="suggest a tool")
 
     args = parser.parse_args()
 

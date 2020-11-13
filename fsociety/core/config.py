@@ -23,7 +23,7 @@ DEFAULT_CONFIG = {
     "ssh_clone": "false",
     "os": CURRENT_PLATFORM,
     "host_file": "hosts.txt",
-    "usernames_file": "usernames.txt"
+    "usernames_file": "usernames.txt",
 }
 
 
