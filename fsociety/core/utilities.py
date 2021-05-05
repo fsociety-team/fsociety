@@ -3,7 +3,7 @@ import os
 from base64 import b64decode
 from socket import gethostbyname
 from webbrowser import open_new_tab
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 
 from requests import get
 
@@ -21,7 +21,6 @@ class Utility(metaclass=ABCMeta):
     def __str__(self):
         return self.__class__.__name__
 
-    @abstractmethod
     def run(self):
         pass
 
