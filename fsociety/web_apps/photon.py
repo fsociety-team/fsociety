@@ -9,7 +9,8 @@ class PhotonRepo(GitHubRepo):
         super().__init__(
             path="s0md3v/Photon",
             install={"pip": "requirements.txt"},
-            description="Incredibly fast crawler designed for OSINT")
+            description="Incredibly fast crawler designed for OSINT",
+        )
 
     def run(self):
         os.chdir(self.full_path)

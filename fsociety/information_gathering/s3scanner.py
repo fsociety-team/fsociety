@@ -10,7 +10,8 @@ class S3scannerRepo(GitHubRepo):
         super().__init__(
             path="sa7mon/S3Scanner",
             install={"pip": "requirements.txt"},
-            description="A tool to find open S3 buckets and dump their contents")
+            description="A tool to find open S3 buckets and dump their contents",
+        )
 
     def run(self):
         os.chdir(self.full_path)

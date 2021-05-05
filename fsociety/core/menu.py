@@ -38,7 +38,7 @@ def set_readline(items):
     except ImportError:
         pass
     else:
-        import rlcompleter
+        import rlcompleter  # noqa: F401
 
         if isinstance(items, list):
             readline.set_completer(CommandCompleter(items).complete)

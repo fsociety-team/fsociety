@@ -9,7 +9,8 @@ class Sublist3rRepo(GitHubRepo):
         super().__init__(
             path="aboul3la/Sublist3r",
             install={"pip": "requirements.txt"},
-            description="Fast subdomains enumeration tool for penetration testers")
+            description="Fast subdomains enumeration tool for penetration testers",
+        )
 
     def run(self):
         os.chdir(self.full_path)

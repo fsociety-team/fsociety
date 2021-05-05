@@ -10,11 +10,11 @@ class BettercapRepo(GitHubRepo):
         super().__init__(
             path="bettercap/bettercap",
             install={
-                "linux":
-                "sudo apt install golang git build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev; go get -u github.com/bettercap/bettercap",
-                "brew": "install bettercap"
+                "linux": "sudo apt install golang git build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev; go get -u github.com/bettercap/bettercap",
+                "brew": "install bettercap",
             },
-            description="Swiss army knife for network attacks and monitoring")
+            description="Swiss army knife for network attacks and monitoring",
+        )
 
     def installed(self):
         return which("bettercap")

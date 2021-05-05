@@ -9,7 +9,8 @@ class SqlmapRepo(GitHubRepo):
         super().__init__(
             path="sqlmapproject/sqlmap",
             install=None,
-            description="Automatic SQL injection and database takeover tool")
+            description="Automatic SQL injection and database takeover tool",
+        )
 
     def run(self):
         os.chdir(self.full_path)

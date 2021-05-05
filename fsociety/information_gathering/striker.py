@@ -6,9 +6,11 @@ from fsociety.core.menu import set_readline
 
 class StrikerRepo(GitHubRepo):
     def __init__(self):
-        super().__init__(path="s0md3v/Striker",
-                         install={"pip": "requirements.txt"},
-                         description="Recon & Vulnerability Scanning Suite")
+        super().__init__(
+            path="s0md3v/Striker",
+            install={"pip": "requirements.txt"},
+            description="Recon & Vulnerability Scanning Suite",
+        )
 
     def run(self):
         os.chdir(self.full_path)

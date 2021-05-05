@@ -6,5 +6,10 @@ from rich.traceback import install
 install()
 
 # Console Setup
-fsociety_theme = Theme({"command": "black on white", "warning": "bold yellow",})
+fsociety_theme = Theme(
+    {
+        "command": "black on white",
+        "warning": "bold yellow",
+    }
+)
 console = Console(theme=fsociety_theme)

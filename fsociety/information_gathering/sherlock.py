@@ -10,7 +10,7 @@ class SherlockRepo(GitHubRepo):
         super().__init__(
             path="sherlock-project/sherlock",
             install={"pip": "requirements.txt"},
-            description="Hunt down social media accounts by username across social networks"
+            description="Hunt down social media accounts by username across social networks",
         )
 
     def run(self):
@@ -19,7 +19,7 @@ class SherlockRepo(GitHubRepo):
         set_readline(usernames)
         user_usernames = input("\nEnter one or more usernames: ").strip()
         for username in user_usernames.split():
-            if not username in usernames:
+            if username not in usernames:
                 add_username(username)
         return os.system(f"python3 sherlock {user_usernames} -r")
 

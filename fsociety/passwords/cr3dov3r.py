@@ -9,7 +9,8 @@ class Cr3dov3rRepo(GitHubRepo):
         super().__init__(
             path="D4Vinci/Cr3dOv3r",
             install={"pip": "requirements.txt"},
-            description="Your best friend in credential reuse attacks")
+            description="Your best friend in credential reuse attacks",
+        )
 
     def run(self):
         os.chdir(self.full_path)

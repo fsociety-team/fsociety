@@ -8,7 +8,7 @@ class CuteitRepo(GitHubRepo):
         super().__init__(
             path="D4Vinci/Cuteit",
             install=None,
-            description="IP obfuscator made to make a malicious ip a bit cuter"
+            description="IP obfuscator made to make a malicious ip a bit cuter",
         )
 
     def run(self):

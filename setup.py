@@ -81,6 +81,8 @@ setup(
             "twine==3.4.1",
             "mypy==0.812",
             "flake8==3.9.1",
+            "flake8-simplify==0.14.0",
+            "flake8-comprehensions==3.4.0",
             "flake8-black==0.2.1",
             "black==21.5b0",
         ]

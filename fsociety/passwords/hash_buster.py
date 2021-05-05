@@ -8,7 +8,8 @@ class HashBusterRepo(GitHubRepo):
         super().__init__(
             path="s0md3v/Hash-Buster",
             install=None,
-            description="Why crack hashes when you can bust them?")
+            description="Why crack hashes when you can bust them?",
+        )
 
     def run(self):
         os.chdir(self.full_path)

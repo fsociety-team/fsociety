@@ -6,9 +6,11 @@ from fsociety.core.menu import confirm
 
 class XsstrikeRepo(GitHubRepo):
     def __init__(self):
-        super().__init__(path="s0md3v/XSStrike",
-                         install={"pip": "requirements.txt"},
-                         description="Advanced XSS Detection Suite")
+        super().__init__(
+            path="s0md3v/XSStrike",
+            install={"pip": "requirements.txt"},
+            description="Advanced XSS Detection Suite",
+        )
 
     def run(self):
         os.chdir(self.full_path)
