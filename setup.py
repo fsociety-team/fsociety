@@ -12,8 +12,8 @@ NAME = "fsociety"
 DESCRIPTION = "A Modular Penetration Testing Framework"
 URL = "https://fsociety.dev/"
 PROJECT_URLS = {
-    "Packages": "https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md",
-    "Changelog": "https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md",
+    "Packages": "https://github.com/fsociety-team/fsociety/blob/main/PACKAGES.md",
+    "Changelog": "https://github.com/fsociety-team/fsociety/blob/main/CHANGELOG.md",
     "Funding": "https://github.com/sponsors/thehappydinoa",
     "Tracker": "https://github.com/fsociety-team/fsociety/issues",
     "Source": "https://github.com/fsociety-team/fsociety",
@@ -82,7 +82,9 @@ setup(
     url=URL,
     project_urls=PROJECT_URLS,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    entry_points={"console_scripts": ["fsociety=fsociety:cli"],},
+    entry_points={
+        "console_scripts": ["fsociety=fsociety:cli"],
+    },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     include_package_data=True,

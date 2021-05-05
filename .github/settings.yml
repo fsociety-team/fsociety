@@ -23,7 +23,7 @@ repository:
   has_downloads: true
 
   # Updates the default branch for this repository.
-  default_branch: master
+  default_branch: main
 
   # Either `true` to allow squash-merging pull requests, or `false` to prevent
   # squash-merging.

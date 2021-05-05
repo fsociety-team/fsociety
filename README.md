@@ -2,11 +2,11 @@
 
 A Modular Penetration Testing Framework
 
-[![Packages](https://img.shields.io/badge/PACKAGES.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/PACKAGES.md) [![Changelog](https://img.shields.io/badge/CHANGELOG.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/CHANGELOG.md)
+[![Packages](https://img.shields.io/badge/PACKAGES.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/main/PACKAGES.md) [![Changelog](https://img.shields.io/badge/CHANGELOG.md-red?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/main/CHANGELOG.md)
 
-[![fsociety](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/fsociety.png)](https://github.com/fsociety-team/fsociety)
+[![fsociety](https://raw.githubusercontent.com/fsociety-team/fsociety/main/images/fsociety.png)](https://github.com/fsociety-team/fsociety)
 
-![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/master/images/cli.png)
+![cli](https://raw.githubusercontent.com/fsociety-team/fsociety/main/images/cli.png)
 
 ## Install
 
@@ -49,6 +49,6 @@ docker run -it fsocietyteam/fsociety fsociety
 
 ## License
 
-[![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/master/LICENSE)
+[![License](https://img.shields.io/pypi/l/fsociety?style=flat-square)](https://github.com/fsociety-team/fsociety/blob/main/LICENSE)
 
 [![Twitter Follow](https://img.shields.io/badge/fuck%20it-ship%20it-blue?style=flat-square)](https://twitter.com/fsociety_team) [![Twitter Follow](https://img.shields.io/twitter/follow/fsociety_team?color=blue&style=flat-square)](https://twitter.com/fsociety_team)
