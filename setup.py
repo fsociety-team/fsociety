@@ -11,25 +11,24 @@ from setuptools import find_packages, setup, Command
 NAME = "fsociety"
 DESCRIPTION = "A Modular Penetration Testing Framework"
 URL = "https://fsociety.dev/"
+GIT_URL = "https://github.com/fsociety-team/fsociety"
 PROJECT_URLS = {
-    "Packages": "https://github.com/fsociety-team/fsociety/blob/main/PACKAGES.md",
-    "Changelog": "https://github.com/fsociety-team/fsociety/blob/main/CHANGELOG.md",
+    "Packages": GIT_URL + "/blob/main/PACKAGES.md",
+    "Changelog": GIT_URL + "/blob/main/CHANGELOG.md",
     "Funding": "https://github.com/sponsors/thehappydinoa",
-    "Tracker": "https://github.com/fsociety-team/fsociety/issues",
-    "Source": "https://github.com/fsociety-team/fsociety",
+    "Tracker": GIT_URL + "/issues",
+    "Source": GIT_URL,
 }
 EMAIL = "contact@fsociety.dev"
 AUTHOR = "fsociety-team"
 REQUIRES_PYTHON = ">=3.7.0"
 VERSION = None
 
-# Required Packages
-REQUIRED = ["gitpython", "rich>=9.2.0", "requests"]
-
-# Optional Packages
-EXTRAS = {"dev": ["wheel", "pylint", "autopep8", "twine", "mypy", "flake8"]}
-
 here = os.path.abspath(os.path.dirname(__file__))
+
+pkg_vars = {}  # type: ignore
+with open(os.path.join(here, NAME, "__version__.py")) as f:
+    exec(f.read(), pkg_vars)
 
 try:
     with io.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
@@ -37,20 +36,11 @@ try:
 except FileNotFoundError:
     long_description = DESCRIPTION
 
-about = {}
-if not VERSION:
-    project_slug = NAME.lower().replace("-", "_").replace(" ", "_")
-    with open(os.path.join(here, project_slug, "__version__.py")) as f:
-        exec(f.read(), about)
-else:
-    about["__version__"] = VERSION
-
 
 class TagCommand(Command):
     """Support setup.py push_tag."""
 
     description = "Push latest version as tag."
-    user_options = []
 
     @staticmethod
     def status(s):
@@ -64,7 +54,7 @@ class TagCommand(Command):
 
     def run(self):
         self.status("Pushing git tags…")
-        os.system("git tag v{0}".format(about["__version__"]))
+        os.system("git tag v{0}".format(pkg_vars["__version__"]))
         os.system("git push --tags")
 
         sys.exit()
@@ -72,7 +62,7 @@ class TagCommand(Command):
 
 setup(
     name=NAME,
-    version=about["__version__"],
+    version=pkg_vars["__version__"],
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -85,14 +75,28 @@ setup(
     entry_points={
         "console_scripts": ["fsociety=fsociety:cli"],
     },
-    install_requires=REQUIRED,
-    extras_require=EXTRAS,
+    install_requires=["rich>=9.2.0", "requests>=2.25.1", "gitpython"],
+    extras_require={
+        "dev": [
+            "twine==3.4.1",
+            "mypy==0.812",
+            "flake8==3.9.1",
+            "flake8-black==0.2.1",
+            "black==21.5b0",
+        ]
+    },
     include_package_data=True,
     license="MIT",
+    keywords=NAME,
     classifiers=[
         # Trove classifiers
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
+        "Topic :: Internet",
         "Topic :: Security",
+        "Framework :: Flake8",
+        "Environment :: Console",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
