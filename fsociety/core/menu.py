@@ -1,6 +1,7 @@
 # pylint: disable=unused-import,broad-except,inconsistent-return-statements
 import os
 import shutil
+from typing import Iterable
 
 from rich.text import Text
 from rich.table import Table
@@ -14,27 +15,25 @@ BACK_COMMANDS = ["back", "return"]
 
 
 class CommandCompleter:
-    def __init__(self, options):
+    def __init__(self, options: Iterable[str]):
         self.options = sorted(options)
-        self.matches = list()
 
-    def complete(self, text, state):
+    def complete(self, text: str, state: int):
         response = None
+        matches = []
         if state == 0:
             if text:
-                self.matches = [
-                    s for s in self.options if s and s.startswith(text.lower())
-                ]
+                matches = [s for s in self.options if s and s.startswith(text.lower())]
             else:
-                self.matches = self.options[:]
+                matches = self.options[:]
         try:
-            response = self.matches[state]
+            response = matches[state]
         except IndexError:
             pass
         return response
 
 
-def set_readline(items):
+def set_readline(items: Iterable[str]):
     try:
         import readline
     except ImportError:

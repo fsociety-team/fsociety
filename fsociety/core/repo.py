@@ -2,10 +2,10 @@
 import os
 from shutil import rmtree, which
 from abc import ABCMeta, abstractmethod
-from collections.abc import Iterable
+from typing import Optional, Union, Iterable, Dict, List
 
 from git import Repo, RemoteProgress
-from rich.progress import BarColumn, Progress
+from rich.progress import BarColumn, Progress, TaskID
 from rich.table import Table
 
 from fsociety.core.config import INSTALL_DIR, get_config
@@ -15,15 +15,15 @@ from fsociety.console import console
 config = get_config()
 
 
-def print_pip_deps(packages):
-    requirements = list()
+def print_pip_deps(packages: Union[str, Iterable[str]]) -> None:
+    requirements = []
     if isinstance(packages, str) and os.path.exists(packages):
         with open(packages, "r") as requirements_file:
             for line in requirements_file:
                 if line.strip():
                     requirements.append(line)
     elif isinstance(packages, Iterable):
-        requirements = packages
+        requirements = list(packages)
     else:
         raise ValueError
     table = Table("Packages", title="Pip Dependencies")
@@ -42,7 +42,7 @@ class CloneError(Exception):
 
 
 class GitProgress(RemoteProgress):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.progress = Progress(
             "[progress.description]{task.description}",
@@ -51,9 +51,11 @@ class GitProgress(RemoteProgress):
             "[progress.filesize]{task.fields[msg]}",
         )
         self.current_opcode = None
-        self.task = None
+        self.task: Optional[TaskID] = None
 
-    def update(self, opcode, count, max_value, msg=None):
+    def update(
+        self, opcode, count: int, max_value: int, msg: Optional[str] = None
+    ) -> None:
         opcode_strs = {
             self.COUNTING: "Counting",
             self.COMPRESSING: "Compressing",
@@ -83,26 +85,29 @@ class GitProgress(RemoteProgress):
             self.progress.start()
         if stage & self.END:
             self.progress.stop()
-        self.progress.update(self.task, msg=msg or "", total=max_value, completed=count)
+        if self.task:
+            self.progress.update(
+                self.task, msg=msg or "", total=max_value, completed=count
+            )
 
 
 class GitHubRepo(metaclass=ABCMeta):
     def __init__(
         self,
-        path="fsociety-team/fsociety",
-        install="pip install -e .",
+        path: str = "fsociety-team/fsociety",
+        install: Union[str, Dict[str, Union[str, List[str]]]] = "pip install -e .",
         description=None,
-    ):
+    ) -> None:
         self.path = path
         self.name = self.path.split("/")[-1]
         self.install_options = install
         self.full_path = os.path.join(INSTALL_DIR, self.name)
         self.description = description
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name.lower().replace("-", "_")
 
-    def clone(self, overwrite=False):
+    def clone(self, overwrite: bool = False) -> str:
         if os.path.exists(self.full_path):
             if not overwrite:
                 repo = Repo(self.full_path)
@@ -117,7 +122,7 @@ class GitHubRepo(metaclass=ABCMeta):
             raise CloneError(f"{self.full_path} not found")
         return self.full_path
 
-    def install(self, no_confirm=False, clone=True):
+    def install(self, no_confirm: bool = False, clone: bool = True) -> None:
         if no_confirm or not confirm(
             f"\nDo you want to install https://github.com/{self.path}?"
         ):
@@ -146,7 +151,8 @@ class GitHubRepo(metaclass=ABCMeta):
                         message = f"Do you want to install these packages from {requirements_txt}?"
                         command = f"pip install -r {requirements_txt}"
 
-                    print_pip_deps(packages)
+                    if packages:
+                        print_pip_deps(packages)
                     if not confirm(message):
                         raise InstallError("User Cancelled")
                 elif (
@@ -161,17 +167,15 @@ class GitHubRepo(metaclass=ABCMeta):
                     or "windows" in install.keys()
                     or "macs" in install.keys()
                 ):
-                    command = install.get(
-                        config.get("fsociety", "os"), install.get("linux")
-                    )
+                    command = str(install[config.get("fsociety", "os") or "linux"])
             else:
                 command = install
 
             os.system(command)
 
-    def installed(self):
+    def installed(self) -> bool:
         return os.path.exists(self.full_path)
 
     @abstractmethod
-    def run(self):
+    def run(self) -> None:
         pass

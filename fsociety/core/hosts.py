@@ -1,4 +1,5 @@
 import os.path
+from typing import List
 
 from fsociety.core.config import INSTALL_DIR, get_config
 
@@ -11,7 +12,7 @@ class InvalidHost(Exception):
     pass
 
 
-def get_hosts():
+def get_hosts() -> List[str]:
     try:
         with open(full_path, "r") as hostfile:
             return [host.strip() for host in hostfile]
@@ -19,7 +20,7 @@ def get_hosts():
         return list()
 
 
-def add_host(host):
+def add_host(host: str) -> None:
     if not host:
         raise ValueError
     with open(full_path, "a") as hostfile:

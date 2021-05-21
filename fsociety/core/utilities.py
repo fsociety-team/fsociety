@@ -15,13 +15,13 @@ from .hosts import get_hosts, add_host
 
 
 class Utility(metaclass=ABCMeta):
-    def __init__(self, description=None):
+    def __init__(self, description: str = None):
         self.description = description
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.__class__.__name__
 
-    def run(self):
+    def run(self) -> None:
         pass
 
 
