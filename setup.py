@@ -41,6 +41,7 @@ class TagCommand(Command):
     """Support setup.py push_tag."""
 
     description = "Push latest version as tag."
+    user_options = []
 
     @staticmethod
     def status(s):
