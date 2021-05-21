@@ -15,10 +15,7 @@ BACK_COMMANDS = ["back", "return"]
 
 class CommandCompleter:
     def __init__(self, options):
-        self.options = {}
-        for option in sorted(options):
-            self.options[option.lower()] = option
-            self.options[option.title()] = option
+        self.options = sorted(options)
         self.matches = list()
 
     def complete(self, text, state):
@@ -26,16 +23,14 @@ class CommandCompleter:
         if state == 0:
             if text:
                 self.matches = [
-                    self.options[s]
-                    for s in self.options.keys()
-                    if s and s.startswith(text)
+                    s for s in self.options if s and s.startswith(text.lower())
                 ]
             else:
                 self.matches = self.options[:]
         try:
             response = self.matches[state]
         except IndexError:
-            response = None
+            pass
         return response
 
 
