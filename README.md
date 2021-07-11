@@ -5,6 +5,7 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/fsociety?style=flat-square)
 [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/r/fsocietyteam/fsociety)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-organge.svg?logo=git&logoColor=organge&style=flat-square)](http://makeapullrequest.com)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/fsocietyteam/fsociety)
 
 A Modular Penetration Testing Framework
 
