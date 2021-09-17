@@ -21,7 +21,7 @@ class SherlockRepo(GitHubRepo):
         for username in user_usernames.split():
             if username not in usernames:
                 add_username(username)
-        return os.system(f"python3 sherlock {user_usernames} -r")
+        return os.system(f"python3 sherlock {user_usernames}")
 
 
 sherlock = SherlockRepo()
