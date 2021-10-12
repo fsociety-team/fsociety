@@ -83,7 +83,7 @@ setup(
             "mypy==0.910",
             "flake8==4.0.1",
             "flake8-simplify==0.14.2",
-            "flake8-comprehensions==3.6.1",
+            "flake8-comprehensions==3.7.0",
             "flake8-black==0.2.3",
             "black==21.9b0",
         ]
