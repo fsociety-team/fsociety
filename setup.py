@@ -80,7 +80,7 @@ setup(
     extras_require={
         "dev": [
             "twine==3.7.1",
-            "mypy==0.930",
+            "mypy==0.931",
             "flake8==4.0.1",
             "flake8-simplify==0.14.2",
             "flake8-comprehensions==3.7.0",
