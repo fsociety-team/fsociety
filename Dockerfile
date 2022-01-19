@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.9.8-alpine
 COPY . /fsociety
 WORKDIR /fsociety
 RUN apk --update add git nmap
