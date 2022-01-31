@@ -84,7 +84,7 @@ setup(
             "flake8==4.0.1",
             "flake8-simplify==0.15.1",
             "flake8-comprehensions==3.8.0",
-            "flake8-black==0.2.3",
+            "flake8-black==0.2.4",
             "black==21.12b0",
         ]
     },
