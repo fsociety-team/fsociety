@@ -79,7 +79,7 @@ setup(
     install_requires=["rich>=9.2.0", "requests>=2.25.1", "gitpython"],
     extras_require={
         "dev": [
-            "twine==3.8.0",
+            "twine==4.0.0",
             "mypy==0.942",
             "flake8==4.0.1",
             "flake8-simplify==0.19.2",
