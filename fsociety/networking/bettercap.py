@@ -11,6 +11,7 @@ class BettercapRepo(GitHubRepo):
             path="bettercap/bettercap",
             install={
                 "linux": "sudo apt install golang git build-essential libpcap-dev libusb-1.0-0-dev libnetfilter-queue-dev; go get -u github.com/bettercap/bettercap",
+                "arch": "sudo pacman -Sy bettercap",
                 "brew": "install bettercap",
             },
             description="Swiss army knife for network attacks and monitoring",

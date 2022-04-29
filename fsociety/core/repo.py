@@ -54,7 +54,7 @@ class GitProgress(RemoteProgress):
         self.task: Optional[TaskID] = None
 
     def update(
-        self, opcode, count: int, max_value: int, msg: Optional[str] = None
+            self, opcode, count: int, max_value: int, msg: Optional[str] = None
     ) -> None:
         opcode_strs = {
             self.COUNTING: "Counting",
@@ -93,16 +93,17 @@ class GitProgress(RemoteProgress):
 
 class GitHubRepo(metaclass=ABCMeta):
     def __init__(
-        self,
-        path: str = "fsociety-team/fsociety",
-        install: Union[str, Dict[str, Union[str, List[str]]]] = "pip install -e .",
-        description=None,
+            self,
+            path: str = "fsociety-team/fsociety",
+            install: Union[str, Dict[str, Union[str, List[str]]]] = "pip install -e .",
+            description=None,
     ) -> None:
         self.path = path
         self.name = self.path.split("/")[-1]
         self.install_options = install
         self.full_path = os.path.join(INSTALL_DIR, self.name)
         self.description = description
+        self.scriptable_os = ["debian", "windows", "macos", "arch"]
 
     def __str__(self) -> str:
         return self.name.lower().replace("-", "_")
@@ -124,10 +125,11 @@ class GitHubRepo(metaclass=ABCMeta):
 
     def install(self, no_confirm: bool = False, clone: bool = True) -> None:
         if no_confirm or not confirm(
-            f"\nDo you want to install https://github.com/{self.path}?"
+                f"\nDo you want to install https://github.com/{self.path}?"
         ):
             print("Cancelled")
             return
+        command = "exit 1"  # avoid unset issues
         if clone:
             self.clone()
         if self.install_options:
@@ -136,10 +138,12 @@ class GitHubRepo(metaclass=ABCMeta):
             else:
                 os.chdir(INSTALL_DIR)
             install = self.install_options
+            target_os = config.get("fsociety", "os")
 
             if isinstance(install, dict):
                 if "pip" in install.keys():
                     packages = install.get("pip")
+                    message = ""  # avoid unset issues
                     if isinstance(packages, list):
                         message = "Do you want to install these packages?"
                         packages_str = " ".join(packages)
@@ -155,19 +159,30 @@ class GitHubRepo(metaclass=ABCMeta):
                         print_pip_deps(packages)
                     if not confirm(message):
                         raise InstallError("User Cancelled")
+
+                elif "go" in install.keys() and which("go"):
+                    command = install.get("go")
+
+                elif "binary" in install.keys():
+                    bin_url = install.get("binary")
+                    if which("curl"):
+                        command = f"curl -L -o {self.full_path}/{self.name} -s {bin_url}"
+                    elif which("wget"):
+                        command = f"wget -q -O {self.full_path}/{self.name} {bin_url}"
+                    else:
+                        raise InstallError("Supported download tools missing")
+                    command = f"mkdir {self.full_path} && {command} && chmod +x {self.full_path}/{self.name}"
                 elif (
-                    config.get("fsociety", "os") == "macos"
-                    and "brew" in install.keys()
-                    and which("brew")
+                        target_os == "macos"
+                        and "brew" in install.keys()
+                        and which("brew")
                 ):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
-                elif (
-                    "linux" in install.keys()
-                    or "windows" in install.keys()
-                    or "macs" in install.keys()
-                ):
-                    command = str(install[config.get("fsociety", "os") or "linux"])
+                elif target_os in install.keys() and target_os in self.scriptable_os:
+                    command = str(install[target_os])
+                else:
+                    raise InstallError(f"Platform not supported, missing {', '.join(install.keys())}")
             else:
                 command = install
 
@@ -177,5 +192,5 @@ class GitHubRepo(metaclass=ABCMeta):
         return os.path.exists(self.full_path)
 
     @abstractmethod
-    def run(self) -> None:
+    def run(self) -> int:
         pass

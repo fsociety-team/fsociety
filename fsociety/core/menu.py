@@ -103,6 +103,8 @@ def tools_cli(name, tools, links=True):
     if selected_tool not in tools_dict.keys():
         if selected_tool in BACK_COMMANDS:
             return
+        if selected_tool is "exit":
+            raise KeyboardInterrupt
         console.print("Invalid Command", style="bold yellow")
         return tools_cli(name, tools, links)
     tool = tools_dict.get(selected_tool)

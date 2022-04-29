@@ -16,9 +16,9 @@ premade_args = {
     "nse_standard": "-sV -sC {host}",
     "vuln_scan": "-Pn --script vuln {host}",
     "google_malware": "-p80 --script http-google-malware {host}",
-    "argressive_scan": "-A -T4 {host}",
+    "aggressive_scan": "-A -T4 {host}",
     "detect_web_app": "--script=http-enum {host}",
-    "subdomain_enumaration": "-sn --script hostmap-crtsh {host}",
+    "subdomain_enumeration": "-sn --script hostmap-crtsh {host}",
     "heartbleed_test": "-sV -p 443 --script=ssl-heartbleed {host}",
     "slowloris": "-max-parallelism 800 -Pn --script http-slowloris --script-args http-slowloris.runforever=true {host}",
 }
@@ -28,7 +28,11 @@ class NmapRepo(GitHubRepo):
     def __init__(self):
         super().__init__(
             path="nmap/nmap",
-            install={"linux": "sudo apt-get install nmap", "brew": "install nmap"},
+            install={
+                "arch": "sudo pacman -Sy nmap",
+                "brew": "install nmap",
+                "linux": "sudo apt-get install nmap"
+            },
             description="the Network Mapper",
         )
 
