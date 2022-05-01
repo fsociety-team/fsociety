@@ -10,7 +10,7 @@ full_path = os.path.join(INSTALL_DIR, config.get("fsociety", "usernames_file"))
 
 def get_usernames() -> List[str]:
     try:
-        with open(full_path, "r") as usernamefile:
+        with open(full_path) as usernamefile:
             return [username.strip() for username in usernamefile]
     except FileNotFoundError:
         return list()

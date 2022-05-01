@@ -1,4 +1,3 @@
-# pylint: disable=invalid-name,line-too-long
 import os
 from abc import ABCMeta
 from base64 import b64decode

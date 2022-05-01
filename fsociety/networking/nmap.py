@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long
 import os
 from shutil import which
 
@@ -31,7 +30,7 @@ class NmapRepo(GitHubRepo):
             install={
                 "arch": "sudo pacman -Sy nmap",
                 "brew": "install nmap",
-                "linux": "sudo apt-get install nmap"
+                "linux": "sudo apt-get install nmap",
             },
             description="the Network Mapper",
         )

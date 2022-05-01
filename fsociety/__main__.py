@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# pylint: disable=exec-used,broad-except,inconsistent-return-statements,invalid-name,trailing-whitespace
 
 import argparse
 import platform

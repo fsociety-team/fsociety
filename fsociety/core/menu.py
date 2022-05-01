@@ -1,4 +1,3 @@
-# pylint: disable=unused-import,broad-except,inconsistent-return-statements
 import os
 import shutil
 from typing import Iterable
@@ -103,7 +102,7 @@ def tools_cli(name, tools, links=True):
     if selected_tool not in tools_dict.keys():
         if selected_tool in BACK_COMMANDS:
             return
-        if selected_tool is "exit":
+        if selected_tool == "exit":
             raise KeyboardInterrupt
         console.print("Invalid Command", style="bold yellow")
         return tools_cli(name, tools, links)

@@ -1,7 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-import io
 import os
 import sys
 
@@ -31,7 +29,7 @@ with open(os.path.join(here, NAME, "__version__.py")) as f:
     exec(f.read(), pkg_vars)
 
 try:
-    with io.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+    with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
         long_description = "\n" + f.read()
 except FileNotFoundError:
     long_description = DESCRIPTION
@@ -50,7 +48,7 @@ class TagCommand(Command):
 
     @staticmethod
     def status(s):
-        print("\033[1m{}\033[0m".format(s))
+        print(f"\033[1m{s}\033[0m")
 
     def initialize_options(self):
         pass
@@ -79,7 +77,7 @@ setup(
     project_urls=PROJECT_URLS,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     entry_points={
-        "console_scripts": ["fsociety=fsociety:cli"],
+        "console_scripts": ["fsociety=fsociety.__main__:main"],
     },
     install_requires=get_requirements("requirements.txt"),
     extras_require={"dev": get_requirements("requirements-dev.txt")},

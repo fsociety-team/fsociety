@@ -14,7 +14,7 @@ class InvalidHost(Exception):
 
 def get_hosts() -> List[str]:
     try:
-        with open(full_path, "r") as hostfile:
+        with open(full_path) as hostfile:
             return [host.strip() for host in hostfile]
     except FileNotFoundError:
         return list()

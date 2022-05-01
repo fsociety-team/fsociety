@@ -1,4 +1,3 @@
-# pylint: disable=too-many-branches,line-too-long
 import os
 from abc import ABCMeta, abstractmethod
 from shutil import rmtree, which
@@ -18,7 +17,7 @@ config = get_config()
 def print_pip_deps(packages: Union[str, Iterable[str]]) -> None:
     requirements = []
     if isinstance(packages, str) and os.path.exists(packages):
-        with open(packages, "r") as requirements_file:
+        with open(packages) as requirements_file:
             for line in requirements_file:
                 if line.strip():
                     requirements.append(line)
@@ -54,7 +53,7 @@ class GitProgress(RemoteProgress):
         self.task: Optional[TaskID] = None
 
     def update(
-            self, opcode, count: int, max_value: int, msg: Optional[str] = None
+        self, opcode, count: int, max_value: int, msg: Optional[str] = None
     ) -> None:
         opcode_strs = {
             self.COUNTING: "Counting",
@@ -93,10 +92,10 @@ class GitProgress(RemoteProgress):
 
 class GitHubRepo(metaclass=ABCMeta):
     def __init__(
-            self,
-            path: str = "fsociety-team/fsociety",
-            install: Union[str, Dict[str, Union[str, List[str]]]] = "pip install -e .",
-            description=None,
+        self,
+        path: str = "fsociety-team/fsociety",
+        install: Union[str, Dict[str, Union[str, List[str]]]] = "pip install -e .",
+        description=None,
     ) -> None:
         self.path = path
         self.name = self.path.split("/")[-1]
@@ -125,7 +124,7 @@ class GitHubRepo(metaclass=ABCMeta):
 
     def install(self, no_confirm: bool = False, clone: bool = True) -> None:
         if no_confirm or not confirm(
-                f"\nDo you want to install https://github.com/{self.path}?"
+            f"\nDo you want to install https://github.com/{self.path}?"
         ):
             print("Cancelled")
             return
@@ -141,7 +140,7 @@ class GitHubRepo(metaclass=ABCMeta):
             target_os = config.get("fsociety", "os")
 
             if isinstance(install, dict):
-                if "pip" in install.keys():
+                if "pip" in install:
                     packages = install.get("pip")
                     message = ""  # avoid unset issues
                     if isinstance(packages, list):
@@ -160,29 +159,29 @@ class GitHubRepo(metaclass=ABCMeta):
                     if not confirm(message):
                         raise InstallError("User Cancelled")
 
-                elif "go" in install.keys() and which("go"):
+                elif "go" in install and which("go"):
                     command = install.get("go")
 
-                elif "binary" in install.keys():
+                elif "binary" in install:
                     bin_url = install.get("binary")
                     if which("curl"):
-                        command = f"curl -L -o {self.full_path}/{self.name} -s {bin_url}"
+                        command = (
+                            f"curl -L -o {self.full_path}/{self.name} -s {bin_url}"
+                        )
                     elif which("wget"):
                         command = f"wget -q -O {self.full_path}/{self.name} {bin_url}"
                     else:
                         raise InstallError("Supported download tools missing")
                     command = f"mkdir {self.full_path} && {command} && chmod +x {self.full_path}/{self.name}"
-                elif (
-                        target_os == "macos"
-                        and "brew" in install.keys()
-                        and which("brew")
-                ):
+                elif target_os == "macos" and "brew" in install and which("brew"):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
-                elif target_os in install.keys() and target_os in self.scriptable_os:
+                elif target_os in install and target_os in self.scriptable_os:
                     command = str(install[target_os])
                 else:
-                    raise InstallError(f"Platform not supported, missing {', '.join(install.keys())}")
+                    raise InstallError(
+                        f"Platform not supported, missing {', '.join(install.keys())}"
+                    )
             else:
                 command = install
 

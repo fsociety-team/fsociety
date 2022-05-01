@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long
 import os
 from shutil import which
 
