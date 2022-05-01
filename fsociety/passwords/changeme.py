@@ -1,8 +1,8 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
+from fsociety.core.hosts import InvalidHost, add_host, get_hosts
 from fsociety.core.menu import set_readline
-from fsociety.core.hosts import get_hosts, add_host, InvalidHost
+from fsociety.core.repo import GitHubRepo
 
 
 class ChangemeRepo(GitHubRepo):

@@ -41,8 +41,8 @@ repository:
 collaborators:
   - username: thehappydinoa
     permission: admin
-    
- # Note: Only valid on organization-owned repositories.
+
+  # Note: Only valid on organization-owned repositories.
     # The permission to grant the collaborator. Can be one of:
     # * `pull` - can pull, but not push to or administer this repository.
     # * `push` - can pull and push, but not administer this repository.

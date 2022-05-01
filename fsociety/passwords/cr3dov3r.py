@@ -1,7 +1,7 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
+from fsociety.core.repo import GitHubRepo
 
 
 class Cr3dov3rRepo(GitHubRepo):

@@ -5,7 +5,7 @@ import io
 import os
 import sys
 
-from setuptools import find_packages, setup, Command
+from setuptools import Command, find_packages, setup
 
 # Package meta-data.
 NAME = "fsociety"
@@ -37,15 +37,20 @@ except FileNotFoundError:
     long_description = DESCRIPTION
 
 
+def get_requirements(path: str) -> list:
+    with open(path) as f:
+        return f.read().splitlines()
+
+
 class TagCommand(Command):
     """Support setup.py push_tag."""
 
     description = "Push latest version as tag."
-    user_options = []
+    user_options = []  # type: ignore
 
     @staticmethod
     def status(s):
-        print("\033[1m{0}\033[0m".format(s))
+        print("\033[1m{}\033[0m".format(s))
 
     def initialize_options(self):
         pass
@@ -55,7 +60,7 @@ class TagCommand(Command):
 
     def run(self):
         self.status("Pushing git tags…")
-        os.system("git tag v{0}".format(pkg_vars["__version__"]))
+        os.system("git tag v{}".format(pkg_vars["__version__"]))
         os.system("git push --tags")
 
         sys.exit()
@@ -76,18 +81,8 @@ setup(
     entry_points={
         "console_scripts": ["fsociety=fsociety:cli"],
     },
-    install_requires=["rich>=9.2.0", "requests>=2.25.1", "gitpython"],
-    extras_require={
-        "dev": [
-            "twine==4.0.0",
-            "mypy==0.942",
-            "flake8==4.0.1",
-            "flake8-simplify==0.19.2",
-            "flake8-comprehensions==3.8.0",
-            "flake8-black==0.3.2",
-            "black==22.3.0",
-        ]
-    },
+    install_requires=get_requirements("requirements.txt"),
+    extras_require={"dev": get_requirements("requirements-dev.txt")},
     include_package_data=True,
     license="MIT",
     keywords=NAME,
@@ -106,6 +101,9 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
     # python setup.py upload

@@ -1,7 +1,7 @@
 import os
 
+from fsociety.core.menu import confirm, set_readline
 from fsociety.core.repo import GitHubRepo
-from fsociety.core.menu import set_readline, confirm
 
 
 class GitgraberRepo(GitHubRepo):

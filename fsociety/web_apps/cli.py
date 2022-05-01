@@ -1,8 +1,8 @@
 # Core
 from fsociety.core.menu import tools_cli
 
-from .xsstrike import xsstrike
 from .photon import photon
+from .xsstrike import xsstrike
 
 __tools__ = [xsstrike, photon]
 

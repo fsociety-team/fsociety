@@ -3,10 +3,10 @@ import os
 import shutil
 from typing import Iterable
 
-from rich.text import Text
-from rich.table import Table
-from rich.style import Style
 from rich import box
+from rich.style import Style
+from rich.table import Table
+from rich.text import Text
 
 from fsociety.console import console
 from fsociety.core.config import INSTALL_DIR

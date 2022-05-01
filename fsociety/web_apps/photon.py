@@ -1,7 +1,7 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import confirm
+from fsociety.core.repo import GitHubRepo
 
 
 class PhotonRepo(GitHubRepo):

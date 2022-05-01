@@ -2,9 +2,9 @@
 import os
 from shutil import which
 
-from fsociety.core.repo import GitHubRepo
+from fsociety.core.hosts import InvalidHost, add_host, get_hosts
 from fsociety.core.menu import set_readline
-from fsociety.core.hosts import get_hosts, add_host, InvalidHost
+from fsociety.core.repo import GitHubRepo
 
 premade_args = {
     "simple": "{host}",
@@ -50,7 +50,7 @@ class NmapRepo(GitHubRepo):
             raise InvalidHost
         if host not in hosts:
             add_host(host)
-        longest_key = max([len(key) for key in premade_args]) + 2
+        longest_key = max(len(key) for key in premade_args) + 2
         print("\nName".ljust(longest_key) + " | Args")
         for name, args in premade_args.items():
             print(f"{name.ljust(longest_key)}: {args.format(host=host)}")

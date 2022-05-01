@@ -1,8 +1,8 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
-from fsociety.core.menu import set_readline, confirm
 from fsociety.core.config import INSTALL_DIR
+from fsociety.core.menu import confirm, set_readline
+from fsociety.core.repo import GitHubRepo
 
 
 class HydrareconRepo(GitHubRepo):

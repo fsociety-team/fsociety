@@ -1,8 +1,8 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
 from fsociety.core.menu import set_readline
-from fsociety.core.usernames import get_usernames, add_username
+from fsociety.core.repo import GitHubRepo
+from fsociety.core.usernames import add_username, get_usernames
 
 
 class SherlockRepo(GitHubRepo):

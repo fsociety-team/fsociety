@@ -1,8 +1,8 @@
 import os
 
-from fsociety.core.repo import GitHubRepo
-from fsociety.core.menu import set_readline
 from fsociety.core.config import INSTALL_DIR
+from fsociety.core.menu import set_readline
+from fsociety.core.repo import GitHubRepo
 
 
 class S3scannerRepo(GitHubRepo):
