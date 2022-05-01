@@ -3,6 +3,8 @@ from configparser import NoOptionError, RawConfigParser
 from pathlib import Path
 from sys import platform
 
+import distro
+
 from fsociety.__version__ import __version__
 
 CURRENT_PLATFORM = platform
@@ -11,7 +13,7 @@ if platform in ["win32", "cygwin"]:
 elif platform.startswith("darwin"):
     CURRENT_PLATFORM = "macos"
 elif platform.startswith("linux") or platform.startswith("freebsd"):
-    CURRENT_PLATFORM = "linux"
+    CURRENT_PLATFORM = distro.like()
 
 INSTALL_DIR = os.path.join(str(Path.home()), ".fsociety")
 CONFIG_FILE = os.path.join(INSTALL_DIR, "fsociety.cfg")
