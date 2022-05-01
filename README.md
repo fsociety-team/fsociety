@@ -1,7 +1,7 @@
 # fsociety
 
 [![PyPI](https://img.shields.io/pypi/v/fsociety?color=orange&logo=pypi&logoColor=orange&style=flat-square)](https://pypi.org/project/fsociety/)
-[![Python Version](https://img.shields.io/badge/python-3.6%2B-blue?logo=python&style=flat-square)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue?logo=python&style=flat-square)](https://www.python.org/downloads/)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/fsociety?style=flat-square)
 [![Docker Cloud build](https://img.shields.io/docker/cloud/build/fsocietyteam/fsociety?style=flat-square)](https://hub.docker.com/r/fsocietyteam/fsociety)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-organge.svg?logo=git&logoColor=organge&style=flat-square)](http://makeapullrequest.com)
