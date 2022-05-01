@@ -1,6 +1,6 @@
 [flake8]
 max-line-length = 88
-exclude = 
+exclude =
     venv,
     # No need to traverse our git directory
     .git,
@@ -10,7 +10,7 @@ exclude =
     build,
     # This contains builds of flake8 that we don't want to check
     dist
-per-file-ignores = 
+per-file-ignores =
     fsociety/cli.py:W291,W605,
     __init__.py:F401,F403
 docstring-convention = google
