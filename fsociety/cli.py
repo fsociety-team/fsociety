@@ -6,25 +6,24 @@ import argparse
 import platform
 from random import choice
 
-from rich.text import Text
 from rich.columns import Columns
+from rich.text import Text
 
-# Core
+import fsociety.core.utilities
+import fsociety.information_gathering
+import fsociety.networking
+import fsociety.obfuscation
+import fsociety.passwords
+import fsociety.web_apps
 from fsociety.console import console
+from fsociety.core.config import CONFIG_FILE, get_config, write_config
 from fsociety.core.menu import (
-    set_readline,
+    clear_screen,
     format_tools,
     module_name,
     prompt,
-    clear_screen,
+    set_readline,
 )
-from fsociety.core.config import get_config, write_config, CONFIG_FILE
-import fsociety.core.utilities
-import fsociety.information_gathering
-import fsociety.passwords
-import fsociety.web_apps
-import fsociety.obfuscation
-import fsociety.networking
 
 # Config
 config = get_config()
@@ -40,7 +39,7 @@ software viruses or any other computer code, files or programs
 designed to interrupt, destroy or limit the functionality of any
 computer software or hardware or telecommunications equipment;
 """
-BANNER1 = """
+BANNER1 = r"""
     ____                _      __
    / __/________  _____(_)__  / /___  __
   / /_/ ___/ __ \/ ___/ / _ \/ __/ / / /
@@ -48,7 +47,7 @@ BANNER1 = """
 /_/ /____/\____/\___/_/\___/\__/\__, /
                                /____/
 """
-BANNER2 = """
+BANNER2 = r"""
   __                _      _
  / _|___  ___   ___(_) ___| |_ _   _
 | |_/ __|/ _ \ / __| |/ _ \ __| | | |
@@ -65,7 +64,7 @@ BANNER3 = """
                                ;
                             `-'
 """
-BANNER4 = """
+BANNER4 = r"""
  ,__                                 .
  /  `   ____   __.    ___  `   ___  _/_   ,    .
  |__   (     .'   \ .'   ` | .'   `  |    |    `

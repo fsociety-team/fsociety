@@ -1,17 +1,17 @@
 # pylint: disable=invalid-name,line-too-long
 import os
+from abc import ABCMeta
 from base64 import b64decode
 from socket import gethostbyname
 from webbrowser import open_new_tab
-from abc import ABCMeta
 
 from requests import get
 
 from fsociety.console import console
 
+from .config import GITHUB_PATH, INSTALL_DIR
+from .hosts import add_host, get_hosts
 from .menu import set_readline, tools_cli
-from .config import INSTALL_DIR, GITHUB_PATH
-from .hosts import get_hosts, add_host
 
 
 class Utility(metaclass=ABCMeta):

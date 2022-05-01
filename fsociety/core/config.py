@@ -1,7 +1,7 @@
 import os.path
-from sys import platform
+from configparser import NoOptionError, RawConfigParser
 from pathlib import Path
-from configparser import RawConfigParser, NoOptionError
+from sys import platform
 
 from fsociety.__version__ import __version__
 

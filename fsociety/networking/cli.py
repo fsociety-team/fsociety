@@ -1,8 +1,8 @@
 # Core
 from fsociety.core.menu import tools_cli
 
-from .nmap import nmap
 from .bettercap import bettercap
+from .nmap import nmap
 
 __tools__ = [nmap, bettercap]
 

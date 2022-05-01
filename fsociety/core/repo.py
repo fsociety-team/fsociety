@@ -1,16 +1,16 @@
 # pylint: disable=too-many-branches,line-too-long
 import os
-from shutil import rmtree, which
 from abc import ABCMeta, abstractmethod
-from typing import Optional, Union, Iterable, Dict, List
+from shutil import rmtree, which
+from typing import Dict, Iterable, List, Optional, Union
 
-from git import Repo, RemoteProgress
+from git import RemoteProgress, Repo
 from rich.progress import BarColumn, Progress, TaskID
 from rich.table import Table
 
+from fsociety.console import console
 from fsociety.core.config import INSTALL_DIR, get_config
 from fsociety.core.menu import confirm
-from fsociety.console import console
 
 config = get_config()
 
