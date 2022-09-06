@@ -60,8 +60,3 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      -
-        name: Inspect
-        if: github.event_name != 'pull_request'
-        run: |
-          docker image inspect fsocietyteam/fsociety:latest
