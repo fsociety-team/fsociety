@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Any unreleased changes
 
+## [3.2.8] - 9-6-2022
+
+- Update docker image
+
 ## [3.2.7] - 4-30-2022
 
 - Add Traitor
@@ -149,7 +153,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial Release
 
-[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.2.7...HEAD
+<!-- References -->
+[unreleased]: https://github.com/fsociety-team/fsociety/compare/v3.2.8...HEAD
+[3.2.8]: https://github.com/fsociety-team/fsociety/compare/v3.2.7...v3.2.8
 [3.2.7]: https://github.com/fsociety-team/fsociety/compare/v3.2.6...v3.2.7
 [3.2.6]: https://github.com/fsociety-team/fsociety/compare/v3.2.5...v3.2.6
 [3.2.5]: https://github.com/fsociety-team/fsociety/compare/v3.2.4...v3.2.5
