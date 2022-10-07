@@ -35,8 +35,10 @@ def print_pip_deps(packages: Union[str, Iterable[str]]) -> None:
 class InstallError(Exception):
     pass
 
+
 class CloneError(Exception):
     pass
+
 
 class GitProgress(RemoteProgress):
     def __init__(self) -> None:
