@@ -10,7 +10,7 @@ arch_map = {"x86_64": "amd64", "i386": "386"}
 
 class TraitorRepo(GitHubRepo):
     def __init__(self):
-        if os.uname().machine in arch_map.keys():
+        if os.uname().machine in arch_map:
             self.arch = arch_map.get(os.uname().machine)
         else:
             self.arch = ""
@@ -46,8 +46,8 @@ class TraitorRepo(GitHubRepo):
             return os.system(
                 f"{self.full_path}/{self.name} {premade_args.get(selected)}"
             )
-        elif (
-            selected and selected not in premade_args.keys()
+        if (
+            selected and selected not in premade_args
         ):  # allow passing custom specific exploits
             return os.system(f"{self.full_path}/{self.name} -e {selected}")
         return self.run()

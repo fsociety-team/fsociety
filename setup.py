@@ -25,7 +25,7 @@ VERSION = None
 here = os.path.abspath(os.path.dirname(__file__))
 
 pkg_vars = {}  # type: ignore
-with open(os.path.join(here, NAME, "__version__.py")) as f:
+with open(os.path.join(here, NAME, "__version__.py"), encoding="utf-8") as f:
     exec(f.read(), pkg_vars)
 
 try:
@@ -36,7 +36,7 @@ except FileNotFoundError:
 
 
 def get_requirements(path: str) -> list:
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         return f.read().splitlines()
 
 
@@ -58,7 +58,7 @@ class TagCommand(Command):
 
     def run(self):
         self.status("Pushing git tags…")
-        os.system("git tag v{}".format(pkg_vars["__version__"]))
+        os.system("git tag v{pkg_vars[\"__version__\"]}")
         os.system("git push --tags")
 
         sys.exit()

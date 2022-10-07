@@ -85,7 +85,7 @@ def tools_cli(name, tools, links=True):
     if links:
         table.add_column("Link", no_wrap=True)
 
-    tools_dict = dict()
+    tools_dict = {}
     for tool in tools:
         tools_dict[str(tool)] = tool
         args = [str(tool), tool.description]
@@ -99,7 +99,7 @@ def tools_cli(name, tools, links=True):
     console.print("back", style="command")
     set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
-    if selected_tool not in tools_dict.keys():
+    if selected_tool not in tools_dict:
         if selected_tool in BACK_COMMANDS:
             return
         if selected_tool == "exit":

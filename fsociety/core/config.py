@@ -35,7 +35,7 @@ def get_config() -> RawConfigParser:
         os.mkdir(INSTALL_DIR)
     if not os.path.exists(CONFIG_FILE):
         config["fsociety"] = DEFAULT_CONFIG
-        with open(CONFIG_FILE, "w") as configfile:
+        with open(CONFIG_FILE, "w", encoding="utf-8") as configfile:
             config.write(configfile)
     config.read(CONFIG_FILE)
     check_config(config)
@@ -46,7 +46,7 @@ def get_config() -> RawConfigParser:
 
 
 def write_config(config: RawConfigParser) -> None:
-    with open(CONFIG_FILE, "w") as configfile:
+    with open(CONFIG_FILE, "w", encoding="utf-8") as configfile:
         config.write(configfile)
 
 

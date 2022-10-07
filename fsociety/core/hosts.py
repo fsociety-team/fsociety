@@ -14,14 +14,14 @@ class InvalidHost(Exception):
 
 def get_hosts() -> List[str]:
     try:
-        with open(full_path) as hostfile:
+        with open(full_path, encoding="utf-8") as hostfile:
             return [host.strip() for host in hostfile]
     except FileNotFoundError:
-        return list()
+        return []
 
 
 def add_host(host: str) -> None:
     if not host:
         raise ValueError
-    with open(full_path, "a") as hostfile:
+    with open(full_path, "a", encoding="utf-8") as hostfile:
         hostfile.write(f"\n{host}")

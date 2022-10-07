@@ -18,7 +18,7 @@ class S3scannerRepo(GitHubRepo):
         set_readline([])
         user_domains = input("\nEnter one or more domains: ").strip()
         txt_path = os.path.join(INSTALL_DIR, "s3_domains.txt")
-        with open(txt_path, "w") as domains_file:
+        with open(txt_path, "w", encoding="utf-8") as domains_file:
             for domain in user_domains.split():
                 domains_file.write(domain)
         return os.system(f"python3 s3scanner.py {txt_path}")

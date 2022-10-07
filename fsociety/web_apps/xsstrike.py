@@ -15,7 +15,7 @@ class XsstrikeRepo(GitHubRepo):
     def run(self):
         os.chdir(self.full_path)
         user_url = input("\nEnter a url to scan: ").strip()
-        args = list()
+        args = []
         if confirm("Do you want to crawl?"):
             args.append("--crawl")
         if confirm("Do you want to find hidden parameters?"):
