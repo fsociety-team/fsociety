@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import sys
 import argparse
 import platform
+import sys
 from random import choice
 
 from rich.columns import Columns
