@@ -58,7 +58,7 @@ class TagCommand(Command):
 
     def run(self):
         self.status("Pushing git tags…")
-        os.system('git tag v{pkg_vars["__version__"]}')
+        os.system(f'git tag v{pkg_vars["__version__"]}')
         os.system("git push --tags")
 
         sys.exit()
