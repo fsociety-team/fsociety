@@ -84,7 +84,9 @@ class print_contributors(Utility):
             style="bold yellow",
             highlight=False,
         )
-        response = get(f"https://api.github.com/repos/{GITHUB_PATH}/contributors")
+        response = get(
+            f"https://api.github.com/repos/{GITHUB_PATH}/contributors", timeout=30
+        )
         contributors = response.json()
         for contributor in sorted(
             contributors, key=lambda c: c["contributions"], reverse=True

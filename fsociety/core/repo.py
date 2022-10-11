@@ -17,7 +17,7 @@ config = get_config()
 def print_pip_deps(packages: Union[str, Iterable[str]]) -> None:
     requirements = []
     if isinstance(packages, str) and os.path.exists(packages):
-        with open(packages) as requirements_file:
+        with open(packages, encoding="utf-8") as requirements_file:
             for line in requirements_file:
                 if line.strip():
                     requirements.append(line)

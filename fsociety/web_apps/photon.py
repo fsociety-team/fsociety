@@ -15,7 +15,7 @@ class PhotonRepo(GitHubRepo):
     def run(self):
         os.chdir(self.full_path)
         user_url = input("\nEnter a url to scan: ").strip()
-        args = list()
+        args = []
         if confirm("Do you want to clone the site?"):
             args.append("--clone")
         if confirm("Do you want to use wayback?"):

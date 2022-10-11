@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-
 import argparse
 import platform
+import sys
 from random import choice
 
 from rich.columns import Columns
@@ -82,11 +82,11 @@ MENU_ITEMS = [
 BUILTIN_FUNCTIONS = {
     "exit": lambda: exec("raise KeyboardInterrupt"),
 }
-items = dict()
+items = {}
 
 
 def print_menu_items():
-    cols = list()
+    cols = []
     for value in MENU_ITEMS:
         name = module_name(value)
         tools = format_tools(value.__tools__)
@@ -126,7 +126,7 @@ def mainloop():
     if not selected_command or (selected_command not in commands):
         console.print("Invalid Command", style="bold yellow")
         return
-    if selected_command in BUILTIN_FUNCTIONS.keys():
+    if selected_command in BUILTIN_FUNCTIONS:
         func = BUILTIN_FUNCTIONS.get(selected_command)
         return func()
     try:
@@ -139,9 +139,9 @@ def mainloop():
 
 
 def info():
-    data = dict()
+    data = {}
     # Config File
-    with open(CONFIG_FILE) as file:
+    with open(CONFIG_FILE, encoding="utf-8") as file:
         data["Config File"] = file.read().strip()
     data["Python Version"] = platform.python_version()
     data["Platform"] = platform.platform()
@@ -165,7 +165,7 @@ def interactive():
     except KeyboardInterrupt:
         console.print("\nExitting...")
         write_config(config)
-        exit(0)
+        sys.exit(0)
 
 
 def main():

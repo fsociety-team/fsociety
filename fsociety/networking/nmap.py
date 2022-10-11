@@ -55,7 +55,7 @@ class NmapRepo(GitHubRepo):
             print(f"{name.ljust(longest_key)}: {args.format(host=host)}")
         set_readline(premade_args.keys())
         selected = input("\nMake a selection: ")
-        if selected and selected in premade_args.keys():
+        if selected and selected in premade_args:
             args = premade_args.get(selected).format(host=host)
             return os.system(f"nmap {args}")
         return self.run()
