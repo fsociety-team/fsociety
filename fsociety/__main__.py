@@ -157,7 +157,6 @@ def info():
 
 
 def interactive():
-
     try:
         while True:
             set_readline(commands)
