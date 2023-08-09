@@ -10,7 +10,10 @@ arch_map = {"x86_64": "amd64", "i386": "386"}
 
 class TraitorRepo(GitHubRepo):
     def __init__(self):
-        if os.uname().machine in arch_map:
+        if "nt" in os.name:
+            self.arch = ""
+            # same as if there's nothing matching, but prevents default checking uname, which only works on posix
+        elif os.uname().machine in arch_map:
             self.arch = arch_map.get(os.uname().machine)
         else:
             self.arch = ""
