@@ -41,6 +41,8 @@
   Why crack hashes when you can bust them?
 - [changeme](https://github.com/ztgrace/changeme)
   A default credential scanner
+- [traitor](https://github.com/liamg/traitor)
+  ⬆️ ☠️ 🔥 Automatic Linux privesc via exploitation of low-hanging fruit e.g. gtfobins, pwnkit, dirty pipe, +w docker.sock
 
 ## Obfuscation
 
