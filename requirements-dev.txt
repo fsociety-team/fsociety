@@ -4,6 +4,6 @@ flake8-black==0.3.6
 flake8-comprehensions==3.14.0
 flake8-simplify==0.20.0
 isort==5.12.0
-mypy==1.5.1
+mypy==1.6.1
 pre-commit==3.5.0
 twine==4.0.2
