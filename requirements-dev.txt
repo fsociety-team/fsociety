@@ -1,4 +1,4 @@
-black==23.11.0
+black==23.12.0
 flake8==6.1.0
 flake8-black==0.3.6
 flake8-comprehensions==3.14.0
