@@ -18,7 +18,3 @@ class rkhunter(GitHubRepo):
         command = input("Choose either [check, unlock, update, versioncheck] ")
 
         return os.system(f"sudo rkhunter --{command}")
-
-
-rkhunter = RKHunter()
-rkhunter.run()
