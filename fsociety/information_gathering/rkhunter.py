@@ -19,4 +19,5 @@ class RKhunter(GitHubRepo):
 
         return os.system(f"sudo rkhunter --{command}")
 
+
 rkhunter = RKhunter()
