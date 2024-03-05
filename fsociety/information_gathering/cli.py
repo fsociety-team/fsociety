@@ -10,7 +10,7 @@ from .striker import striker
 from .sublist3r import sublist3r
 from .rkhunter import rkhunter
 
-__tools__ = [sqlmap, striker, sublist3r, sherlock, s3scanner, gitgraber, hydrarecon, RKHunter]
+__tools__ = [sqlmap, striker, sublist3r, sherlock, s3scanner, gitgraber, hydrarecon, rkhunter]
 
 
 def cli():
