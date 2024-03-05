@@ -5,7 +5,7 @@ from fsociety.core.repo import GitHubRepo
 from fsociety.core.usernames import add_username, get_usernames
 
 
-class rkhunter(GitHubRepo):
+class RKhunter(GitHubRepo):
     def __init__(self):
         super().__init__(
             path="youngunix/rkhunter",
@@ -18,3 +18,5 @@ class rkhunter(GitHubRepo):
         command = input("Choose either [check, unlock, update, versioncheck] ")
 
         return os.system(f"sudo rkhunter --{command}")
+
+rkhunter = RKhunter()
