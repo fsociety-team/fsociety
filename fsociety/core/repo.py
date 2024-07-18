@@ -173,7 +173,7 @@ class GitHubRepo(metaclass=ABCMeta):
                     else:
                         raise InstallError("Supported download tools missing")
                     command = f"mkdir {self.full_path} && {command} && chmod +x {self.full_path}/{self.name}"
-                elif target_os == "macos" and "brew" in install and which("brew"):
+                elif "brew" in install and which("brew"):
                     brew_opts = install.get("brew")
                     command = f"brew {brew_opts}"
                 elif target_os in install and target_os in self.scriptable_os:
