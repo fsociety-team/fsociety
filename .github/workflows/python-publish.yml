@@ -13,13 +13,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
+    strategy:
+      matrix:
+        python-version:
+          - 3.12.4
+    
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.7
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7
+          python-version: ${{ matrix.python-version }}
 
       - name: Test install
         run: |
