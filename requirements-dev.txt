@@ -6,4 +6,4 @@ flake8-simplify==0.21.0
 isort==5.13.2
 mypy==1.8.0
 pre-commit==3.6.0
-twine==4.0.2
+twine==5.1.1
