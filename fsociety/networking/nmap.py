@@ -29,8 +29,10 @@ class NmapRepo(GitHubRepo):
             path="nmap/nmap",
             install={
                 "arch": "sudo pacman -Sy nmap",
-                "brew": "install nmap",
+                "brew": "nmap",
                 "linux": "sudo apt-get install nmap",
+                "scoop": "nmap extras/vcredist2008",
+                "winget": "nmap",
             },
             description="the Network Mapper",
         )
