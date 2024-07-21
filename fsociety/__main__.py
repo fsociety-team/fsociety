@@ -3,8 +3,10 @@ import argparse
 import platform
 import sys
 from random import choice
+from typing import Optional, Union
 
 from rich.columns import Columns
+from rich.style import Style
 from rich.text import Text
 
 import fsociety.core.utilities
@@ -20,6 +22,7 @@ from fsociety.core.menu import (
     format_tools,
     module_name,
     prompt,
+    run_tool,
     set_readline,
 )
 
@@ -112,10 +115,33 @@ def agreement():
             config.set("fsociety", "agreement", "true")
 
 
+subcommands = list()
 for item in MENU_ITEMS:
     items[module_name(item)] = item
-
+    for tool in item.__tools__:
+        subcommands.append(
+            {
+                "parent": item.__name__.split(".")[-1],
+                "tool": tool,
+                "name": tool.__str__(),
+            }
+        )
 commands = list(items.keys()) + list(BUILTIN_FUNCTIONS.keys())
+
+
+def errorhandle(error: Exception, style: Optional[Union[str, Style]] = "red") -> None:
+    console.print(str(error), style=style)
+    if config.getboolean("fsociety", "development"):
+        console.print_exception()
+    input("Press [Enter/Return] to return to menu... ")
+    return
+
+
+def doexcept(error: Exception, style: Optional[Union[str, Style]] = "red") -> None:
+    try:
+        raise error
+    except Exception as e:
+        errorhandle(e, style=style)
 
 
 def mainloop():
@@ -123,9 +149,25 @@ def mainloop():
     console.print(choice(BANNERS), style="red", highlight=False)
     print_menu_items()
     selected_command = input(prompt()).strip()
+
+    def sub_command_has(sbc):
+        return sbc["name"] == selected_command
+
     if not selected_command or (selected_command not in commands):
-        console.print("Invalid Command", style="bold yellow")
-        return
+        try:
+            matches = list(filter(sub_command_has, subcommands))
+            subcommand = None
+            if len(matches) > 0:
+                subcommand = matches[0]
+            if subcommand is not None:
+                # execute parent cli, pass subcmd.name -> cli
+                return run_tool(subcommand["tool"], subcommand["name"])
+            doexcept(Exception("Invalid Command"), style="bold yellow")
+        except StopIteration:
+            # looks like we didn't find a subcommand, either
+            return errorhandle(Exception("Invalid Command"), style="bold yellow")
+        except Exception as error:
+            return errorhandle(error)
     if selected_command in BUILTIN_FUNCTIONS:
         func = BUILTIN_FUNCTIONS.get(selected_command)
         return func()
@@ -133,9 +175,7 @@ def mainloop():
         func = items[selected_command].cli
         return func()
     except Exception as error:
-        console.print(str(error))
-        console.print_exception()
-    return
+        return errorhandle(error)
 
 
 def info():
