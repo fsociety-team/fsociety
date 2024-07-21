@@ -100,16 +100,15 @@ def print_menu_items():
     console.print(Columns(cols, equal=True, expand=True))
 
     for key in BUILTIN_FUNCTIONS:
-        print()
-        console.command(key)
+        console.command(f"\n{key}")
 
 
 def agreement():
     while not config.getboolean("fsociety", "agreement"):
         clear_screen()
-        console.warning(TERMS)
-        agree = input("You must agree to our terms and conditions first (Y/n) ")
-        if agree.lower()[0] == "y":
+        console.input_error(TERMS)
+        agree = input("You must agree to our terms and conditions first (y/N) ")
+        if len(agree) and agree[0].lower() == "y":
             config.set("fsociety", "agreement", "true")
 
 
@@ -145,10 +144,10 @@ def mainloop():
             if subcommand is not None:
                 # execute parent cli, pass subcmd.name -> cli
                 return run_tool(subcommand["tool"], subcommand["name"])
-            return console.warning("Invalid Command")
+            return console.input_error("Invalid Command", True)
         except StopIteration:
             # looks like we didn't find a subcommand, either
-            return console.warning("Invalid Command")
+            return console.input_error("Invalid Command", True)
         except Exception as error:
             return console.handle_error(error)
     if selected_command in BUILTIN_FUNCTIONS:
@@ -185,7 +184,7 @@ def interactive():
             set_readline(commands)
             mainloop()
     except KeyboardInterrupt:
-        console.print("\nExitting...")
+        console.print("\nExiting...")
         write_config(config)
         sys.exit(0)
 

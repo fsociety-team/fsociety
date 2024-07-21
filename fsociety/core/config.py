@@ -27,7 +27,7 @@ DEFAULT_CONFIG = {
     "os": CURRENT_PLATFORM,
     "host_file": "hosts.txt",
     "usernames_file": "usernames.txt",
-    "log_level": "error",
+    "log_level": "info",
 }
 
 

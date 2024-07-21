@@ -115,14 +115,12 @@ def tools_cli(name, tools, links=True):
             return
         if selected_tool == "exit":
             raise KeyboardInterrupt
-        console.warn("Invalid Command")
+        console.warn("Invalid Command", True)
         return tools_cli(name, tools, links)
     tool = tools_dict.get(selected_tool)
     return run_tool(tool, selected_tool)
 
 
 def confirm(message="Do you want to?"):
-    response = input(f"{message} (y/n): ").lower()
-    if response:
-        return response[0] == "y"
-    return False
+    agree = input(f"{message} (y/N): ")
+    return len(agree) and agree[0].lower() == "y"
