@@ -3,10 +3,8 @@ import argparse
 import platform
 import sys
 from random import choice
-from typing import Optional, Union
 
 from rich.columns import Columns
-from rich.style import Style
 from rich.text import Text
 
 import fsociety.core.utilities
@@ -103,13 +101,13 @@ def print_menu_items():
 
     for key in BUILTIN_FUNCTIONS:
         print()
-        console.print(key, style="command")
+        console.command(key)
 
 
 def agreement():
     while not config.getboolean("fsociety", "agreement"):
         clear_screen()
-        console.print(TERMS, style="bold yellow")
+        console.warning(TERMS)
         agree = input("You must agree to our terms and conditions first (Y/n) ")
         if agree.lower()[0] == "y":
             config.set("fsociety", "agreement", "true")
@@ -127,21 +125,6 @@ for item in MENU_ITEMS:
             }
         )
 commands = list(items.keys()) + list(BUILTIN_FUNCTIONS.keys())
-
-
-def errorhandle(error: Exception, style: Optional[Union[str, Style]] = "red") -> None:
-    console.print(str(error), style=style)
-    if config.getboolean("fsociety", "development"):
-        console.print_exception()
-    input("Press [Enter/Return] to return to menu... ")
-    return
-
-
-def doexcept(error: Exception, style: Optional[Union[str, Style]] = "red") -> None:
-    try:
-        raise error
-    except Exception as e:
-        errorhandle(e, style=style)
 
 
 def mainloop():
@@ -162,12 +145,12 @@ def mainloop():
             if subcommand is not None:
                 # execute parent cli, pass subcmd.name -> cli
                 return run_tool(subcommand["tool"], subcommand["name"])
-            doexcept(Exception("Invalid Command"), style="bold yellow")
+            return console.warning("Invalid Command")
         except StopIteration:
             # looks like we didn't find a subcommand, either
-            return errorhandle(Exception("Invalid Command"), style="bold yellow")
+            return console.warning("Invalid Command")
         except Exception as error:
-            return errorhandle(error)
+            return console.handle_error(error)
     if selected_command in BUILTIN_FUNCTIONS:
         func = BUILTIN_FUNCTIONS.get(selected_command)
         return func()
@@ -175,7 +158,7 @@ def mainloop():
         func = items[selected_command].cli
         return func()
     except Exception as error:
-        return errorhandle(error)
+        return console.handle_error(error)
 
 
 def info():

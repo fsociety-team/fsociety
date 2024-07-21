@@ -8,7 +8,6 @@ from rich.text import Text
 
 from fsociety.console import console
 from fsociety.core.config import INSTALL_DIR
-from fsociety.core.errors import doexcept
 
 BACK_COMMANDS = ["back", "return"]
 
@@ -80,14 +79,12 @@ def run_tool(tool, selected_tool: str):
     try:
         response = tool.run()
         if response and response > 0 and response != 256:
-            console.print(
-                f"{selected_tool} returned a non-zero exit code", style="bold red"
-            )
+            console.error(f"{selected_tool} returned a non-zero exit code")
             if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
                 os.chdir(INSTALL_DIR)
                 tool.uninstall()
                 tool.install()
-        doexcept(Exception(f"{selected_tool} completed"), style="bold green on green")
+        console.success(f"{selected_tool} completed")
     except KeyboardInterrupt:
         return
 
@@ -110,7 +107,7 @@ def tools_cli(name, tools, links=True):
         table.add_row(*args)
 
     console.print(table)
-    console.print("back", style="command")
+    console.command("back")
     set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
     if selected_tool not in tools_dict:
@@ -118,7 +115,7 @@ def tools_cli(name, tools, links=True):
             return
         if selected_tool == "exit":
             raise KeyboardInterrupt
-        console.print("Invalid Command", style="bold yellow")
+        console.warn("Invalid Command")
         return tools_cli(name, tools, links)
     tool = tools_dict.get(selected_tool)
     return run_tool(tool, selected_tool)
