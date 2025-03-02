@@ -1,1 +1,3 @@
 include *.md LICENSE
+include requirements.txt
+include requirements-dev.txt
