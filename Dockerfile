@@ -18,7 +18,7 @@ ENV PYTHONUNBUFFERED=1 \
 COPY . /fsociety
 WORKDIR /fsociety
 
-RUN apk add --update --no-cache git nmap && pip install -e .
+RUN apk add --update --no-cache git nmap nmap-scripts && pip install -e .
 
 CMD ["--info"]
 ENTRYPOINT ["fsociety"]
