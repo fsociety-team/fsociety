@@ -1,5 +1,4 @@
 import os
-import shutil
 from typing import Iterable
 
 from rich import box
@@ -74,8 +73,20 @@ def prompt(path="", base_path="~"):
     return f"\nfsociety {encoded_path}# "
 
 
-def input_wait():
-    input("\nPress [ENTER] to continue... ")
+def run_tool(tool, selected_tool: str):
+    if hasattr(tool, "install") and not tool.installed():
+        tool.install()
+    try:
+        response = tool.run()
+        if response and response > 0 and response != 256:
+            console.error(f"{selected_tool} returned a non-zero exit code")
+            if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
+                os.chdir(INSTALL_DIR)
+                tool.uninstall()
+                tool.install()
+        console.success(f"{selected_tool} completed")
+    except KeyboardInterrupt:
+        return
 
 
 def tools_cli(name, tools, links=True):
@@ -96,7 +107,7 @@ def tools_cli(name, tools, links=True):
         table.add_row(*args)
 
     console.print(table)
-    console.print("back", style="command")
+    console.command("back")
     set_readline(list(tools_dict.keys()) + BACK_COMMANDS)
     selected_tool = input(prompt(name.split(".")[-2])).strip()
     if selected_tool not in tools_dict:
@@ -104,29 +115,12 @@ def tools_cli(name, tools, links=True):
             return
         if selected_tool == "exit":
             raise KeyboardInterrupt
-        console.print("Invalid Command", style="bold yellow")
+        console.warn("Invalid Command", True)
         return tools_cli(name, tools, links)
     tool = tools_dict.get(selected_tool)
-    if hasattr(tool, "install") and not tool.installed():
-        tool.install()
-    try:
-        response = tool.run()
-        if response and response > 0 and response != 256:
-            console.print(
-                f"{selected_tool} returned a non-zero exit code", style="bold red"
-            )
-            if hasattr(tool, "install") and confirm("Do you want to reinstall?"):
-                os.chdir(INSTALL_DIR)
-                shutil.rmtree(tool.full_path)
-                tool.install()
-    except KeyboardInterrupt:
-        return
-
-    return input_wait()
+    return run_tool(tool, selected_tool)
 
 
 def confirm(message="Do you want to?"):
-    response = input(f"{message} (y/n): ").lower()
-    if response:
-        return response[0] == "y"
-    return False
+    agree = input(f"{message} (y/N): ")
+    return len(agree) and agree[0].lower() == "y"

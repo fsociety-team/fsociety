@@ -15,6 +15,7 @@ elif platform.startswith("darwin"):
 elif platform.startswith("linux") or platform.startswith("freebsd"):
     CURRENT_PLATFORM = distro.like()
 
+
 INSTALL_DIR = os.path.join(str(Path.home()), ".fsociety")
 CONFIG_FILE = os.path.join(INSTALL_DIR, "fsociety.cfg")
 GITHUB_PATH = "fsociety-team/fsociety"
@@ -26,6 +27,7 @@ DEFAULT_CONFIG = {
     "os": CURRENT_PLATFORM,
     "host_file": "hosts.txt",
     "usernames_file": "usernames.txt",
+    "log_level": "info",
 }
 
 

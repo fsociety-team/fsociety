@@ -20,6 +20,7 @@ from fsociety.core.menu import (
     format_tools,
     module_name,
     prompt,
+    run_tool,
     set_readline,
 )
 
@@ -99,22 +100,29 @@ def print_menu_items():
     console.print(Columns(cols, equal=True, expand=True))
 
     for key in BUILTIN_FUNCTIONS:
-        print()
-        console.print(key, style="command")
+        console.command(f"\n{key}")
 
 
 def agreement():
     while not config.getboolean("fsociety", "agreement"):
         clear_screen()
-        console.print(TERMS, style="bold yellow")
-        agree = input("You must agree to our terms and conditions first (Y/n) ")
-        if agree.lower()[0] == "y":
+        console.input_error(TERMS)
+        agree = input("You must agree to our terms and conditions first (y/N) ")
+        if len(agree) and agree[0].lower() == "y":
             config.set("fsociety", "agreement", "true")
 
 
+subcommands = list()
 for item in MENU_ITEMS:
     items[module_name(item)] = item
-
+    for tool in item.__tools__:
+        subcommands.append(
+            {
+                "parent": item.__name__.split(".")[-1],
+                "tool": tool,
+                "name": tool.__str__(),
+            }
+        )
 commands = list(items.keys()) + list(BUILTIN_FUNCTIONS.keys())
 
 
@@ -123,9 +131,25 @@ def mainloop():
     console.print(choice(BANNERS), style="red", highlight=False)
     print_menu_items()
     selected_command = input(prompt()).strip()
+
+    def sub_command_has(sbc):
+        return sbc["name"] == selected_command
+
     if not selected_command or (selected_command not in commands):
-        console.print("Invalid Command", style="bold yellow")
-        return
+        try:
+            matches = list(filter(sub_command_has, subcommands))
+            subcommand = None
+            if len(matches) > 0:
+                subcommand = matches[0]
+            if subcommand is not None:
+                # execute parent cli, pass subcmd.name -> cli
+                return run_tool(subcommand["tool"], subcommand["name"])
+            return console.input_error("Invalid Command", True)
+        except StopIteration:
+            # looks like we didn't find a subcommand, either
+            return console.input_error("Invalid Command", True)
+        except Exception as error:
+            return console.handle_error(error)
     if selected_command in BUILTIN_FUNCTIONS:
         func = BUILTIN_FUNCTIONS.get(selected_command)
         return func()
@@ -133,9 +157,7 @@ def mainloop():
         func = items[selected_command].cli
         return func()
     except Exception as error:
-        console.print(str(error))
-        console.print_exception()
-    return
+        return console.handle_error(error)
 
 
 def info():
@@ -162,7 +184,7 @@ def interactive():
             set_readline(commands)
             mainloop()
     except KeyboardInterrupt:
-        console.print("\nExitting...")
+        console.print("\nExiting...")
         write_config(config)
         sys.exit(0)
 
