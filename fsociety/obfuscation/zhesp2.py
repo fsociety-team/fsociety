@@ -13,7 +13,7 @@ class Zhesp2Repo(GitHubRepo):
         super().__init__(
             path="CEO-netizen/zhesp2",
             install=None,
-            description="File and text encryption tool using ZHESP2 protocol",
+            description="File and text encryption tool using ZHESP2 client",
         )
 
     def run(self):
