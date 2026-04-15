@@ -75,6 +75,50 @@ It acts as an orchestrator: it helps install upstream tools, exposes them throug
 - `suggest_tool`: open tool request issue template.
 - `print_contributors`: fetch and print contributor usernames from GitHub.
 
+## Tutorials
+
+Per-tool practical tutorials are available in [Tutorials/README.md](Tutorials/README.md).
+
+### Utilities
+
+- [host2ip](Tutorials/utilities/host2ip.md)
+- [base64_decode](Tutorials/utilities/base64_decode.md)
+- [spawn_shell](Tutorials/utilities/spawn_shell.md)
+- [suggest_tool](Tutorials/utilities/suggest_tool.md)
+- [print_contributors](Tutorials/utilities/print_contributors.md)
+
+### Information Gathering
+
+- [sqlmap](Tutorials/information_gathering/sqlmap.md)
+- [striker](Tutorials/information_gathering/striker.md)
+- [sublist3r](Tutorials/information_gathering/sublist3r.md)
+- [sherlock](Tutorials/information_gathering/sherlock.md)
+- [s3scanner](Tutorials/information_gathering/s3scanner.md)
+- [gitgraber](Tutorials/information_gathering/gitgraber.md)
+- [hydrarecon](Tutorials/information_gathering/hydrarecon.md)
+
+### Networking
+
+- [nmap](Tutorials/networking/nmap.md)
+- [bettercap](Tutorials/networking/bettercap.md)
+
+### Web Apps
+
+- [xsstrike](Tutorials/web_apps/xsstrike.md)
+- [photon](Tutorials/web_apps/photon.md)
+
+### Passwords
+
+- [cupp](Tutorials/passwords/cupp.md)
+- [cr3dov3r](Tutorials/passwords/cr3dov3r.md)
+- [hash_buster](Tutorials/passwords/hash_buster.md)
+- [changeme](Tutorials/passwords/changeme.md)
+- [traitor](Tutorials/passwords/traitor.md)
+
+### Obfuscation
+
+- [cuteit](Tutorials/obfuscation/cuteit.md)
+
 ## How It Works
 
 1. Start `fsociety`.
