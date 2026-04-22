@@ -268,6 +268,16 @@ Use fsociety only for legal and authorized security testing, research, and educa
 
 You are responsible for obtaining explicit permission before scanning, enumerating, testing, or exploiting any system, network, application, account, or data. Unauthorized activity may violate law and policy.
 
+## Contributing
+### Development team
+- [MatheoCASSY](https://github.com/MatheoCASSY)
+- [Dxctor-_Sl3ep](https://github.com/Dxctor-_Sl3ep)
+### Product Owner
+- [Alexandre Sanchez](https://github.com/sonical0)
+### Scrum Master
+- [Xavier SANCHEZ](https://github.com/xaviersanc)
+### Link to the Trello board
+**[Trello](https://trello.com/b/wKL9uMD8/maintenance-applicative/table)**
 ## License
 
 This software is licensed under the [MIT](https://github.com/fsociety-team/fsociety/blob/main/LICENSE) License.
