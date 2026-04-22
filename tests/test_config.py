@@ -1,6 +1,8 @@
 """Tests fonctionnels - core/config.py (T01 à T04)"""
-import pytest
+
 from configparser import RawConfigParser
+
+import pytest
 
 
 # T01 - Cas usuel : lecture config existante
@@ -15,6 +17,7 @@ def test_get_config_returns_valid_config(fresh_config):
 @pytest.mark.functional
 def test_get_config_has_all_default_keys(fresh_config):
     import fsociety.core.config as cfg
+
     for key in cfg.DEFAULT_CONFIG:
         assert fresh_config.has_option("fsociety", key), f"Clé manquante : {key}"
 
@@ -37,12 +40,15 @@ def test_get_config_creates_install_dir(tmp_path, monkeypatch):
 # T03 - Non-régression : clé manquante dans config → ajout automatique
 @pytest.mark.non_regression
 def test_check_config_adds_missing_key(temp_install_dir):
-    import fsociety.core.config as cfg
     from configparser import RawConfigParser
+
+    import fsociety.core.config as cfg
 
     # Créer un config sans la clé 'ssh_clone'
     config = RawConfigParser()
-    config["fsociety"] = {k: v for k, v in cfg.DEFAULT_CONFIG.items() if k != "ssh_clone"}
+    config["fsociety"] = {
+        k: v for k, v in cfg.DEFAULT_CONFIG.items() if k != "ssh_clone"
+    }
     with open(cfg.CONFIG_FILE, "w", encoding="utf-8") as f:
         config.write(f)
 

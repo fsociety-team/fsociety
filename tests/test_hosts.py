@@ -1,4 +1,5 @@
 """Tests fonctionnels et non-régression - core/hosts.py (T05 à T07)"""
+
 import pytest
 
 

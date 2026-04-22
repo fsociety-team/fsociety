@@ -1,13 +1,15 @@
 """Tests fonctionnels - core/menu.py (T13 à T15, T24 à T25)"""
-import fsociety.core.utilities
+
 import pytest
+
+import fsociety.core.utilities
 
 
 # T13 - Cas usuel : module_name retourne le dernier segment
 @pytest.mark.functional
 def test_module_name_returns_last_segment():
-    from fsociety.core.menu import module_name
     import fsociety.information_gathering as ig
+    from fsociety.core.menu import module_name
 
     result = module_name(ig)
     assert result == "information_gathering"
