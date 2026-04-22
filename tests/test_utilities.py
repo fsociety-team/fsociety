@@ -1,5 +1,4 @@
 """Tests fonctionnels - base64 et utilitaires (T10 à T12)"""
-import binascii
 import pytest
 from base64 import b64decode
 

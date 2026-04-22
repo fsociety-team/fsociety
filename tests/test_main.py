@@ -1,7 +1,6 @@
 """Tests fonctionnels - __main__.py : navigation menu et accord (T21 à T23)"""
 import pytest
-from unittest.mock import patch, MagicMock
-from io import StringIO
+from unittest.mock import patch
 
 
 # T21 - Cas d'erreur : commande invalide dans le menu principal

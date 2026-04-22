@@ -1,6 +1,5 @@
 """Tests fonctionnels et non-régression - core/repo.py (T16 à T20)"""
 import pytest
-from unittest.mock import patch
 
 
 # Classe concrète minimale pour tester GitHubRepo (qui est abstract)
