@@ -1,7 +1,8 @@
 import os
 import tempfile
-import pytest
 from configparser import RawConfigParser
+
+import pytest
 
 
 @pytest.fixture
@@ -37,6 +38,7 @@ def temp_install_dir(monkeypatch, tmp_path):
 def fresh_config(temp_install_dir):
     """Return a freshly created config using the temp install dir."""
     import fsociety.core.config as cfg
+
     config = RawConfigParser()
     config["fsociety"] = cfg.DEFAULT_CONFIG.copy()
     with open(cfg.CONFIG_FILE, "w", encoding="utf-8") as f:

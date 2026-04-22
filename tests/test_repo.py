@@ -1,13 +1,17 @@
 """Tests fonctionnels et non-régression - core/repo.py (T16 à T20)"""
-import pytest
+
 from unittest.mock import patch
+
+import pytest
 
 
 # Classe concrète minimale pour tester GitHubRepo (qui est abstract)
 class ConcreteRepo:
     """Sous-classe minimale de GitHubRepo pour les tests."""
+
     def __init__(self, path):
         from fsociety.core.repo import GitHubRepo
+
         self._base = GitHubRepo.__new__(GitHubRepo)
         self._base.path = path
         self._base.name = path.split("/")[-1]
@@ -16,6 +20,7 @@ class ConcreteRepo:
 
     def installed(self):
         import os
+
         return os.path.exists(self._base.full_path)
 
     def __str__(self):

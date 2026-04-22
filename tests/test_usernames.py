@@ -1,4 +1,5 @@
 """Tests fonctionnels et non-régression - core/usernames.py (T08 à T09)"""
+
 import pytest
 
 
