@@ -136,3 +136,9 @@ dmypy.json
 
 # macOS
 .DS_Store
+
+# Playwright / pytest-html reports and artifacts
+playwright-report/
+test-results/
+*.webm
+*.zip
