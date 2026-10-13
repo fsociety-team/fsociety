@@ -31,6 +31,7 @@ On Linux you can also use [OTinstaller](https://github.com/OSINTVerseHQ/OTinstal
 
 ```bash
 pipx install otinstaller
+otinstaller init
 otinstaller install fsociety
 otinstaller run fsociety
 ```
