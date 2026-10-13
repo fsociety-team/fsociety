@@ -27,6 +27,14 @@ A Modular Penetration Testing Framework
 pip install fsociety
 ```
 
+On Linux you can also use [OTinstaller](https://github.com/OSINTVerseHQ/OTinstaller), a third-party tool manager that installs the PyPI release into its own virtualenv. It isn't maintained by the fsociety team, so please report problems with it [on the OTinstaller tracker](https://github.com/OSINTVerseHQ/OTinstaller/issues).
+
+```bash
+pipx install otinstaller
+otinstaller install fsociety
+otinstaller run fsociety
+```
+
 ## Update
 
 ```bash
